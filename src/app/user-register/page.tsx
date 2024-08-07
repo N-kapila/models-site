@@ -21,7 +21,7 @@ import {
 import Image from "next/image";
 import FacebookRoundedIcon from "@mui/icons-material/FacebookRounded";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import registerimg from "../../../public/assets/registerimg.jpg";
+import registerimg from "../../../public/assets/registerimg2.jpg";
 import googleIcon from "../../../public/assets/LogoGoogle.png";
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -96,7 +96,7 @@ export default function Page() {
               <Typography variant="subtitle1" gutterBottom sx={{ mr: 1 }}>
                 Already have an account?
               </Typography>
-              <Link href="#" variant="subtitle1" underline="none">
+              <Link href="/user-login" variant="subtitle1" underline="none">
                 Login
               </Link>
             </Box>
