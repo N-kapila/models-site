@@ -21,7 +21,7 @@ import {
 import Image from "next/image";
 import FacebookRoundedIcon from "@mui/icons-material/FacebookRounded";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-//import registerimg from "../../../public/assets/registerimg.jpg";
+import registerimg from "../../../public/assets/registerimg.jpg";
 import googleIcon from "../../../public/assets/LogoGoogle.png";
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -74,12 +74,12 @@ export default function Page() {
       <Grid container spacing={2}>
         <Grid item sm={6} sx={{ display: { xs: "none", sm: "block" } }}>
           <Box sx={{ position: "relative", width: "100%", height: "100%" }}>
-            {/* <Image
+            <Image
               src={registerimg}
               alt="register image"
               layout="fill"
               objectFit="cover"
-            /> */}
+            />
           </Box>
         </Grid>
         <Grid item xs={12} sm={6}>
