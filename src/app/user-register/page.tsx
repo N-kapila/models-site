@@ -70,10 +70,18 @@ export default function Page() {
   };
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1, padding: 1 }}>
       <Grid container spacing={2}>
         <Grid item sm={6} sx={{ display: { xs: "none", sm: "block" } }}>
-          <Box sx={{ position: "relative", width: "100%", height: "100%" }}>
+          <Box
+            sx={{
+              position: "relative",
+              width: "100%",
+              height: "100%",
+              borderRadius: "16px",
+              overflow: "hidden",
+            }}
+          >
             <Image
               src={registerimg}
               alt="register image"

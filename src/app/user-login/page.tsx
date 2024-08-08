@@ -28,7 +28,7 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
   display: "flex",
   flexDirection: "column",
-  justifyContent: "space-between",
+  justifyContent: "space-around",
   alignItems: "center",
   height: "100vh",
 }));
@@ -61,7 +61,7 @@ export default function page() {
     setShowPassword(!showPassword);
   };
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1, padding: 1 }}>
       <Grid container spacing={2}>
         <Grid item sm={6} xs={12}>
           <Item>
@@ -141,7 +141,11 @@ export default function page() {
             </Box>
             <DottedDivider />
 
-            <Box sx={{ display: { xs: "none", lg: "block" } }}>
+            <Box
+              sx={{
+                display: { xs: "none", lg: "block" },
+              }}
+            >
               <p>
                 -------------------------------------------------------- OR
                 --------------------------------------------------------
@@ -190,7 +194,15 @@ export default function page() {
         </Grid>
 
         <Grid item sm={6} sx={{ display: { xs: "none", sm: "block" } }}>
-          <Box sx={{ position: "relative", width: "100%", height: "100%" }}>
+          <Box
+            sx={{
+              position: "relative",
+              width: "100%",
+              height: "100%",
+              borderRadius: "16px",
+              overflow: "hidden",
+            }}
+          >
             <Image
               src={loginImg}
               alt="register image"
