@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { styled, alpha } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 import {
   AppBar,
   Box,
@@ -11,20 +11,27 @@ import {
   InputBase,
   InputBaseProps,
   Menu,
-  Container,
   Avatar,
   Tooltip,
   MenuItem,
   Badge,
+  Drawer,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Button,
 } from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import HomeIcon from "@mui/icons-material/Home";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import MailIcon from "@mui/icons-material/Mail";
 import userimg from "../../../public/assets/user.png";
+import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import { useClickAway } from "react-use";
 
-const settings = ["Profile", "settings", "Logout"];
+const settings = ["Profile", "Settings", "Logout"];
 
 interface StyledInputBaseProps extends InputBaseProps {
   expanded: boolean;
@@ -51,14 +58,13 @@ const StyledInputBase = styled(InputBase)<StyledInputBaseProps>(
   ({ theme, expanded }) => ({
     color: "black",
     width: expanded ? "150px" : "0px",
-    height: expanded ? "10px" : "0px",
-    transition: theme.transitions.create(["width", "height", "padding"]),
+    transition: theme.transitions.create(["width", "padding"]),
     "& .MuiInputBase-input": {
       padding: theme.spacing(0, 0),
       paddingLeft: `calc(1em + ${theme.spacing(2)})`,
-      width: expanded ? "75%" : "0px",
-      transition: theme.transitions.create("width"),
+      width: expanded ? "100%" : "0px",
       fontSize: "0.875rem",
+      opacity: expanded ? 1 : 0,
     },
   })
 );
@@ -66,16 +72,29 @@ const StyledInputBase = styled(InputBase)<StyledInputBaseProps>(
 function page() {
   const [expanded, setExpanded] = React.useState(false);
   const searchRef = React.useRef<HTMLDivElement>(null);
+  const drawerRef = React.useRef<HTMLDivElement>(null);
+  const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const handleExpandClick = () => {
-    setExpanded(true);
+    setExpanded(!expanded);
   };
 
-  const handleClickAway = () => {
-    setExpanded(false);
+  const handleClickAway = (event: MouseEvent) => {
+    if (
+      searchRef.current &&
+      !searchRef.current.contains(event.target as Node) &&
+      (!drawerRef.current || !drawerRef.current.contains(event.target as Node))
+    ) {
+      setExpanded(false);
+    }
   };
 
   useClickAway(searchRef, handleClickAway);
+  useClickAway(drawerRef, handleClickAway);
+
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
+  };
 
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
@@ -89,124 +108,222 @@ function page() {
     setAnchorElUser(null);
   };
 
+  const drawer = (
+    <Box
+      onClick={handleDrawerToggle}
+      sx={{
+        width: 250,
+        display: "flex",
+        textAlign: "center",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        height: "100vh",
+      }}
+    >
+      <List>
+        <ListItem button component="a" href="/search">
+          <ListItemIcon>
+            <SearchIcon />
+          </ListItemIcon>
+          <ListItemText primary="Search" />
+        </ListItem>
+
+        <ListItem button component="a" href="/">
+          <ListItemIcon>
+            <HomeIcon />
+          </ListItemIcon>
+          <ListItemText primary="Home" />
+        </ListItem>
+
+        <ListItem button component="a" href="/messages">
+          <ListItemIcon>
+            <Badge badgeContent={2} color="primary">
+              <MailIcon />
+            </Badge>
+          </ListItemIcon>
+          <ListItemText primary="Messages" />
+        </ListItem>
+
+        <ListItem button component="a" href="/notifications">
+          <ListItemIcon>
+            <Badge badgeContent={4} color="primary">
+              <NotificationsNoneIcon />
+            </Badge>
+          </ListItemIcon>
+          <ListItemText primary="Notifications" />
+        </ListItem>
+      </List>
+      <Box sx={{ padding: 5 }}>
+        <Button variant="contained" href="/profile" rel="noopener noreferrer">
+          <PersonOutlineIcon sx={{ mr: 1 }} />
+          Profile
+        </Button>
+      </Box>
+    </Box>
+  );
+
   return (
     <Box>
       <AppBar
         position="static"
-        sx={{ width: "100%", backgroundColor: "#000000" }}
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "center",
+          paddingLeft: 3,
+          backgroundColor: "#000000",
+        }}
       >
-        <Container>
-          <Toolbar
-            disableGutters
+        <Toolbar
+          disableGutters
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            width: "100%",
+            alignItems: "center",
+            backgroundColor: "#000000",
+          }}
+        >
+          <Typography
+            variant="h6"
+            noWrap
+            component="a"
+            href="/"
             sx={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "space-between",
-              width: "100%",
-              alignItems: "center",
-              backgroundColor: "#000000",
+              mr: 2,
+              display: { xs: "none", md: "flex" },
+              fontFamily: "monospace",
+              fontWeight: 700,
+              letterSpacing: ".3rem",
+              color: "inherit",
+              textDecoration: "none",
             }}
           >
-            <Typography
-              variant="h6"
-              noWrap
-              component="a"
-              href="#"
-              sx={{
-                mr: 2,
-                display: { xs: "none", md: "flex" },
-                fontFamily: "monospace",
-                fontWeight: 700,
-                letterSpacing: ".3rem",
-                color: "inherit",
-                textDecoration: "none",
-              }}
-            >
-              LOGO
-            </Typography>
+            LOGO
+          </Typography>
 
-            <Typography
-              variant="h5"
-              noWrap
-              component="a"
-              href="#app-bar-with-responsive-menu"
-              sx={{
-                mr: 2,
-                display: { xs: "flex", md: "none" },
-                flexGrow: 1,
-                fontFamily: "monospace",
-                fontWeight: 700,
-                letterSpacing: ".3rem",
-                color: "inherit",
-                textDecoration: "none",
-              }}
-            >
-              LOGO
-            </Typography>
+          <Typography
+            variant="h5"
+            noWrap
+            component="a"
+            href="/"
+            sx={{
+              mr: 2,
+              display: { xs: "flex", md: "none" },
+              flexGrow: 1,
+              fontFamily: "monospace",
+              fontWeight: 700,
+              letterSpacing: ".3rem",
+              color: "inherit",
+              textDecoration: "none",
+            }}
+          >
+            LOGO
+          </Typography>
+        </Toolbar>
 
-            <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-              <Box sx={{ display: "flex", alignItems: "center" }}>
-                <Search ref={searchRef}>
-                  <IconButton onClick={handleExpandClick}>
-                    <SearchIcon sx={{ fontSize: 15 }} />
-                  </IconButton>
+        <Box sx={{ display: { xs: "flex", md: "none" } }}>
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            edge="start"
+            onClick={handleDrawerToggle}
+          >
+            <MenuIcon />
+          </IconButton>
+        </Box>
 
-                  <StyledInputBase
-                    placeholder="Search…"
-                    inputProps={{ "aria-label": "search" }}
-                    autoFocus={expanded}
-                    expanded={expanded}
-                  />
-                </Search>
-              </Box>
+        <Box
+          sx={{
+            display: { xs: "none", md: "flex" },
+            alignItems: "center",
+            gap: 1,
+          }}
+        >
+          <Search ref={searchRef}>
+            <IconButton onClick={handleExpandClick}>
+              <SearchIcon sx={{ fontSize: 15 }} />
+            </IconButton>
 
-              <Badge badgeContent={2} color="primary">
-                <MailIcon sx={{ display: { xs: "flex" } }} />
-              </Badge>
+            <StyledInputBase
+              placeholder="Search…"
+              inputProps={{ "aria-label": "search" }}
+              autoFocus={expanded}
+              expanded={expanded}
+            />
+          </Search>
 
-              <HomeIcon sx={{ display: { xs: "flex" } }} />
+          <IconButton href="/" sx={{ color: "white" }}>
+            <HomeIcon sx={{ display: { xs: "flex" } }} />
+          </IconButton>
 
-              <Badge badgeContent={4} color="primary">
-                <NotificationsNoneIcon sx={{ display: { xs: "flex" } }} />
-              </Badge>
+          <IconButton href="/messages" sx={{ color: "white" }}>
+            <Badge badgeContent={2} color="primary">
+              <MailIcon sx={{ display: { xs: "flex" } }} />
+            </Badge>
+          </IconButton>
 
-              <Box sx={{ flexGrow: 0 }}>
-                <Tooltip title="Open settings">
-                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <Avatar
-                      sx={{ width: 25, height: 25 }}
-                      alt="User"
-                      src={userimg.src}
-                    />
-                  </IconButton>
-                </Tooltip>
-                <Menu
-                  sx={{ mt: "45px" }}
-                  id="menu-appbar"
-                  anchorEl={anchorElUser}
-                  anchorOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
-                  }}
-                  keepMounted
-                  transformOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
-                  }}
-                  open={Boolean(anchorElUser)}
-                  onClose={handleCloseUserMenu}
-                >
-                  {settings.map((setting) => (
-                    <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                      <Typography textAlign="center">{setting}</Typography>
-                    </MenuItem>
-                  ))}
-                </Menu>
-              </Box>
-            </Box>
-          </Toolbar>
-        </Container>
+          <IconButton href="/notification" sx={{ color: "white" }}>
+            <Badge badgeContent={4} color="primary">
+              <NotificationsNoneIcon sx={{ display: { xs: "flex" } }} />
+            </Badge>
+          </IconButton>
+        </Box>
+
+        <Box sx={{ flexGrow: 0 }}>
+          <Menu
+            sx={{ mt: "45px" }}
+            id="menu-appbar"
+            anchorEl={anchorElUser}
+            anchorOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+            keepMounted
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+            open={Boolean(anchorElUser)}
+            onClose={handleCloseUserMenu}
+          >
+            {settings.map((setting) => (
+              <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                <Typography textAlign="center">{setting}</Typography>
+              </MenuItem>
+            ))}
+          </Menu>
+        </Box>
+
+        <Tooltip title="Open settings">
+          <IconButton onClick={handleOpenUserMenu} sx={{ p: 3 }}>
+            <Avatar
+              sx={{ width: 25, height: 25 }}
+              alt="User"
+              src={userimg.src}
+            />
+          </IconButton>
+        </Tooltip>
       </AppBar>
+
+      <Drawer
+        variant="temporary"
+        anchor="right"
+        open={mobileOpen}
+        onClose={handleDrawerToggle}
+        ModalProps={{
+          keepMounted: true,
+        }}
+        sx={{
+          display: { xs: "block", md: "none" },
+          "& .MuiDrawer-paper": { boxSizing: "border-box", width: 250 },
+        }}
+        ref={drawerRef}
+      >
+        {drawer}
+      </Drawer>
     </Box>
   );
 }
