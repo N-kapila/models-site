@@ -57,7 +57,7 @@ const textFieldStyle = {
   },
 };
 
-export default function Page() {
+const page: React.FC = () => {
   const [role, setRole] = React.useState("");
   const [showPassword, setShowPassword] = React.useState(false);
 
@@ -295,4 +295,6 @@ export default function Page() {
       </Grid>
     </Box>
   );
-}
+};
+
+export default page;

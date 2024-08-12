@@ -33,7 +33,7 @@ const page: React.FC = () => {
             href="/"
             sx={{
               mr: 2,
-              display: { xs: "none", md: "flex" },
+              display: { xs: "flex", md: "flex" },
               fontFamily: "monospace",
               fontWeight: 700,
               letterSpacing: ".3rem",
@@ -43,6 +43,7 @@ const page: React.FC = () => {
           >
             LOGO
           </Typography>
+
           <Box>
             <Link href="/" color="inherit" sx={{ mx: 1 }}>
               Home

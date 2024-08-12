@@ -69,7 +69,7 @@ const StyledInputBase = styled(InputBase)<StyledInputBaseProps>(
   })
 );
 
-function page() {
+const page: React.FC = () => {
   const [expanded, setExpanded] = React.useState(false);
   const searchRef = React.useRef<HTMLDivElement>(null);
   const drawerRef = React.useRef<HTMLDivElement>(null);
@@ -121,7 +121,7 @@ function page() {
       }}
     >
       <List>
-        <ListItem button component="a" href="/search">
+        <ListItem button component="a" href="/search-page">
           <ListItemIcon>
             <SearchIcon />
           </ListItemIcon>
@@ -326,5 +326,6 @@ function page() {
       </Drawer>
     </Box>
   );
-}
+};
+
 export default page;
