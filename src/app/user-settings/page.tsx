@@ -2,6 +2,9 @@
 
 import React from "react";
 import { Box, Tabs, Tab, Typography } from "@mui/material";
+import ProfileSettings from "./profileSettings";
+import PasswordSettings from "./passwordSettings";
+import AccessSettings from "./accessSettings";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -19,6 +22,7 @@ function TabPanel(props: TabPanelProps) {
       id={`vertical-tabpanel-${index}`}
       aria-labelledby={`vertical-tab-${index}`}
       {...other}
+      style={{ width: "80%" }}
     >
       {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
     </div>
@@ -104,16 +108,19 @@ const Page: React.FC = () => {
         <TabPanel value={value} index={0}>
           <Typography variant="h3" gutterBottom>
             Update Profile
+            <ProfileSettings />
           </Typography>
         </TabPanel>
         <TabPanel value={value} index={1}>
           <Typography variant="h3" gutterBottom>
             Change Password
+            <PasswordSettings />
           </Typography>
         </TabPanel>
         <TabPanel value={value} index={2}>
           <Typography variant="h3" gutterBottom>
             Manage Access
+            <AccessSettings />
           </Typography>
         </TabPanel>
       </Box>
@@ -152,16 +159,19 @@ const Page: React.FC = () => {
         <CustomTabPanel value={value} index={0}>
           <Typography variant="h5" gutterBottom>
             Update Profile
+            <ProfileSettings />
           </Typography>
         </CustomTabPanel>
         <CustomTabPanel value={value} index={1}>
           <Typography variant="h5" gutterBottom>
             Change Password
+            <PasswordSettings />
           </Typography>
         </CustomTabPanel>
         <CustomTabPanel value={value} index={2}>
           <Typography variant="h5" gutterBottom>
             Manage Access
+            <AccessSettings />
           </Typography>
         </CustomTabPanel>
       </Box>
