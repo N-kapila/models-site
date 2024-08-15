@@ -19,12 +19,13 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import FacebookRoundedIcon from "@mui/icons-material/FacebookRounded";
 import loginImg from "../../../public/assets/loginImg.jpg";
 import googleIcon from "../../../public/assets/LogoGoogle.png";
+import LabeledTextField from "../components/page";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,
   padding: theme.spacing(1),
-  textAlign: "center",
+  textAlign: "left",
   color: theme.palette.text.secondary,
   display: "flex",
   flexDirection: "column",
@@ -87,19 +88,14 @@ export default function page() {
             </Typography>
 
             <Box sx={{ width: "90%" }}>
-              <Typography
-                variant="subtitle2"
-                gutterBottom
-                sx={{ textAlign: "left" }}
-              >
-                Email or Phone number
-              </Typography>
-              <TextField
-                fullWidth
-                // label="Enter Your Email"
-                id="name"
-                sx={textFieldStyle}
-              />
+              <Box sx={{ mb: 2 }}>
+                <LabeledTextField
+                  label="Email or Phone number"
+                  textFieldProps={{
+                    placeholder: "Enter Email or Phone number",
+                  }}
+                />
+              </Box>
 
               <Typography
                 variant="subtitle2"
@@ -111,6 +107,7 @@ export default function page() {
               <TextField
                 fullWidth
                 id="password"
+                placeholder="Enter Password"
                 type={showPassword ? "text" : "password"}
                 sx={textFieldStyle}
                 InputProps={{

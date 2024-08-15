@@ -17,18 +17,20 @@ import {
   SelectChangeEvent,
   InputAdornment,
   IconButton,
+  InputLabel,
 } from "@mui/material";
 import Image from "next/image";
 import FacebookRoundedIcon from "@mui/icons-material/FacebookRounded";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import registerimg from "../../../public/assets/registerimg2.jpg";
 import googleIcon from "../../../public/assets/LogoGoogle.png";
+import LabeledTextField from "../components/page";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,
   padding: theme.spacing(1),
-  textAlign: "center",
+  textAlign: "left",
   color: theme.palette.text.secondary,
   display: "flex",
   flexDirection: "column",
@@ -46,7 +48,6 @@ const DottedDivider = styled(Divider)(({ theme }) => ({
 }));
 
 const textFieldStyle = {
-  marginBottom: "16px",
   "& .MuiInputBase-root": {
     height: "40px",
     display: "flex",
@@ -60,9 +61,14 @@ const textFieldStyle = {
 const page: React.FC = () => {
   const [role, setRole] = React.useState("");
   const [showPassword, setShowPassword] = React.useState(false);
+  const [showRePassword, setShowRePassword] = React.useState(false);
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
+  };
+
+  const handleClickShowRePassword = () => {
+    setShowRePassword(!showRePassword);
   };
 
   const handleChange = (event: SelectChangeEvent<string>) => {
@@ -112,131 +118,131 @@ const page: React.FC = () => {
             <Typography variant="h4" gutterBottom sx={{ color: "#000000" }}>
               Create Your Account
             </Typography>
-            <Box sx={{ width: "90%" }}>
-              <Typography
-                variant="subtitle2"
-                gutterBottom
-                sx={{ textAlign: "left" }}
-              >
-                Name
-              </Typography>
-              <TextField
-                fullWidth
-                // label="Enter Your Name"
-                id="name"
-                sx={textFieldStyle}
-              />
 
-              <Typography
-                variant="subtitle2"
-                gutterBottom
-                sx={{ textAlign: "left" }}
-              >
-                Email
-              </Typography>
-              <TextField
-                fullWidth
-                //label="Enter Your Email"
-                id="email"
-                sx={textFieldStyle}
-              />
+            <Box
+              sx={{
+                width: "90%",
+                gap: 2,
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              <Box>
+                <LabeledTextField
+                  label="Name"
+                  textFieldProps={{
+                    placeholder: "Enter Your Name",
+                  }}
+                />
+              </Box>
 
-              <Typography
-                variant="subtitle2"
-                gutterBottom
-                sx={{ textAlign: "left" }}
-              >
-                Phone Number
-              </Typography>
-              <TextField
-                fullWidth
-                // label="Enter Your Phone Number"
-                id="phoneNumber"
-                sx={textFieldStyle}
-              />
+              <Box>
+                <LabeledTextField
+                  label="Email"
+                  textFieldProps={{
+                    placeholder: "Enter Your Email",
+                  }}
+                />
+              </Box>
 
-              <Typography
-                variant="subtitle2"
-                gutterBottom
-                sx={{ textAlign: "left" }}
-              >
-                Role
-              </Typography>
-              <FormControl
-                fullWidth
-                size="small"
-                sx={{ mb: 2, textAlign: "left" }}
-              >
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={role}
-                  // label="Age"
-                  onChange={handleChange}
+              <Box>
+                <LabeledTextField
+                  label="Phone Number"
+                  textFieldProps={{
+                    placeholder: "Enter Your Phone Number",
+                  }}
+                />
+              </Box>
+
+              <Box>
+                <Typography
+                  variant="subtitle2"
+                  gutterBottom
+                  sx={{ textAlign: "left" }}
                 >
-                  <MenuItem value={10}>Photographer</MenuItem>
-                  <MenuItem value={20}>Model</MenuItem>
-                  <MenuItem value={20}>Designer</MenuItem>
-                </Select>
-              </FormControl>
+                  Role
+                </Typography>
+                <FormControl fullWidth size="small" sx={{ textAlign: "left" }}>
+                  <InputLabel id="role-select-label">
+                    Select your role
+                  </InputLabel>
+                  <Select
+                    labelId="role-select-label"
+                    id="role-select"
+                    value={role}
+                    onChange={handleChange}
+                    label="Select your role"
+                  >
+                    <MenuItem value="photographer">Photographer</MenuItem>
+                    <MenuItem value="model">Model</MenuItem>
+                    <MenuItem value="designer">Designer</MenuItem>
+                  </Select>
+                </FormControl>
+              </Box>
 
-              <Typography
-                variant="subtitle2"
-                gutterBottom
-                sx={{ textAlign: "left" }}
-              >
-                Password
-              </Typography>
-              <TextField
-                fullWidth
-                id="password"
-                type={showPassword ? "text" : "password"}
-                sx={textFieldStyle}
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton
-                        edge="end"
-                        onClick={handleClickShowPassword}
-                        aria-label={
-                          showPassword ? "Hide password" : "Show password"
-                        }
-                      >
-                        {showPassword ? <VisibilityOff /> : <Visibility />}
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
-              />
+              <Box>
+                <Typography
+                  variant="subtitle2"
+                  gutterBottom
+                  sx={{ textAlign: "left" }}
+                >
+                  Password
+                </Typography>
+                <TextField
+                  fullWidth
+                  id="password"
+                  placeholder="Enter Password"
+                  type={showPassword ? "text" : "password"}
+                  sx={textFieldStyle}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          edge="end"
+                          onClick={handleClickShowPassword}
+                          aria-label={
+                            showPassword ? "Hide password" : "Show password"
+                          }
+                        >
+                          {showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+              </Box>
 
-              <Typography
-                variant="subtitle2"
-                gutterBottom
-                sx={{ textAlign: "left" }}
-              >
-                Confirm Password
-              </Typography>
-              <TextField
-                fullWidth
-                id="confirm-password"
-                type={showPassword ? "text" : "password"}
-                sx={textFieldStyle}
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton
-                        edge="end"
-                        onClick={handleClickShowPassword}
-                        aria-label={
-                          showPassword ? "Hide password" : "Show password"
-                        }
-                      >
-                        {showPassword ? <VisibilityOff /> : <Visibility />}
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
-              />
+              <Box>
+                <Typography
+                  variant="subtitle2"
+                  gutterBottom
+                  sx={{ textAlign: "left" }}
+                >
+                  Confirm Password
+                </Typography>
+                <TextField
+                  fullWidth
+                  id="confirm-password"
+                  type={showRePassword ? "text" : "password"}
+                  placeholder="Re-Enter Password"
+                  sx={textFieldStyle}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          edge="end"
+                          onClick={handleClickShowRePassword}
+                          aria-label={
+                            showRePassword ? "Hide password" : "Show password"
+                          }
+                        >
+                          {showRePassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+              </Box>
 
               <Button variant="contained" sx={{ margin: 3 }}>
                 Register

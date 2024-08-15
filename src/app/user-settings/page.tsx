@@ -22,7 +22,7 @@ function TabPanel(props: TabPanelProps) {
       id={`vertical-tabpanel-${index}`}
       aria-labelledby={`vertical-tab-${index}`}
       {...other}
-      style={{ width: "80%" }}
+      style={{ width: "80%", height: "100%" }}
     >
       {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
     </div>
