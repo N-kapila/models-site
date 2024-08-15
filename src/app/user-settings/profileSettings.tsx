@@ -19,6 +19,7 @@ import {
 import InfoIcon from "@mui/icons-material/Info";
 import { styled } from "@mui/material/styles";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { format } from "date-fns";
@@ -303,10 +304,44 @@ const ProfileSettings: React.FC = () => {
               fullWidth
               size="small"
               value={selectedDate ? format(selectedDate, "MMMM d, yyyy") : ""}
+              placeholder="Select your birthday"
               sx={{ width: "100%" }}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <CalendarMonthIcon />
+                  </InputAdornment>
+                ),
+              }}
             />
           }
         />
+      </Box>
+
+      <Box>
+        <Typography variant="subtitle2" gutterBottom>
+          Bio
+        </Typography>
+        <TextField
+          fullWidth
+          id="outlined-multiline-static"
+          multiline
+          rows={4}
+          placeholder="Enter your Bio"
+        />
+      </Box>
+
+      <Box
+        sx={{
+          width: "100%",
+          alignItems: "center",
+          justifyContent: "center",
+          textAlign: { xs: "center", sm: "left" },
+        }}
+      >
+        <Button variant="contained" size="large">
+          Save
+        </Button>
       </Box>
     </Box>
   );

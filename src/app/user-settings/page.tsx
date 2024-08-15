@@ -73,7 +73,7 @@ const Page: React.FC = () => {
           flexGrow: 1,
           bgcolor: "background.paper",
           display: { xs: "none", md: "flex" },
-          height: "100vh",
+          height: "100%",
         }}
       >
         <Tabs

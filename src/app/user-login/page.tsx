@@ -132,9 +132,18 @@ export default function page() {
                 </Link>
               </Box>
 
-              <Button variant="contained" sx={{ margin: 3 }}>
-                Login
-              </Button>
+              <Box
+                sx={{
+                  width: "100%",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  textAlign: "center",
+                }}
+              >
+                <Button variant="contained" sx={{ margin: 3 }}>
+                  Login
+                </Button>
+              </Box>
             </Box>
             <DottedDivider />
 
