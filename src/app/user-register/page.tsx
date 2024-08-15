@@ -24,7 +24,8 @@ import FacebookRoundedIcon from "@mui/icons-material/FacebookRounded";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import registerimg from "../../../public/assets/registerimg2.jpg";
 import googleIcon from "../../../public/assets/LogoGoogle.png";
-import LabeledTextField from "../components/page";
+import LabeledTextField from "../components/TextField";
+import PasswordField from "../components/PasswordField";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -181,66 +182,14 @@ const page: React.FC = () => {
               </Box>
 
               <Box>
-                <Typography
-                  variant="subtitle2"
-                  gutterBottom
-                  sx={{ textAlign: "left" }}
-                >
-                  Password
-                </Typography>
-                <TextField
-                  fullWidth
-                  id="password"
-                  placeholder="Enter Password"
-                  type={showPassword ? "text" : "password"}
-                  sx={textFieldStyle}
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <IconButton
-                          edge="end"
-                          onClick={handleClickShowPassword}
-                          aria-label={
-                            showPassword ? "Hide password" : "Show password"
-                          }
-                        >
-                          {showPassword ? <VisibilityOff /> : <Visibility />}
-                        </IconButton>
-                      </InputAdornment>
-                    ),
-                  }}
-                />
+                <PasswordField label="Password" />
               </Box>
 
               <Box>
-                <Typography
-                  variant="subtitle2"
-                  gutterBottom
-                  sx={{ textAlign: "left" }}
-                >
-                  Confirm Password
-                </Typography>
-                <TextField
-                  fullWidth
+                <PasswordField
+                  label="Confirm Password"
                   id="confirm-password"
-                  type={showRePassword ? "text" : "password"}
-                  placeholder="Re-Enter Password"
-                  sx={textFieldStyle}
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <IconButton
-                          edge="end"
-                          onClick={handleClickShowRePassword}
-                          aria-label={
-                            showRePassword ? "Hide password" : "Show password"
-                          }
-                        >
-                          {showRePassword ? <VisibilityOff /> : <Visibility />}
-                        </IconButton>
-                      </InputAdornment>
-                    ),
-                  }}
+                  placeholder="Confirm Password"
                 />
               </Box>
 

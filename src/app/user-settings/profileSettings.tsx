@@ -23,7 +23,7 @@ import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { format } from "date-fns";
-import LabeledTextField from "../components/page";
+import LabeledTextField from "../components/TextField";
 
 const VisuallyHiddenInput = styled("input")({
   clip: "rect(0 0 0 0)",
@@ -87,6 +87,7 @@ const ProfileSettings: React.FC = () => {
         gap: 2,
         display: "flex",
         flexDirection: "column",
+        height: "100%",
       }}
     >
       <Box>

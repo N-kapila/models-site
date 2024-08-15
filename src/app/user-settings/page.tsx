@@ -129,7 +129,7 @@ const Page: React.FC = () => {
           flexGrow: 1,
           bgcolor: "background.paper",
           display: { xs: "block", md: "none" },
-          height: "100vh",
+          height: "100%",
         }}
       >
         <Box

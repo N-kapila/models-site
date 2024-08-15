@@ -19,7 +19,8 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import FacebookRoundedIcon from "@mui/icons-material/FacebookRounded";
 import loginImg from "../../../public/assets/loginImg.jpg";
 import googleIcon from "../../../public/assets/LogoGoogle.png";
-import LabeledTextField from "../components/page";
+import LabeledTextField from "../components/TextField";
+import PasswordField from "../components/PasswordField";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -97,36 +98,10 @@ export default function page() {
                 />
               </Box>
 
-              <Typography
-                variant="subtitle2"
-                gutterBottom
-                sx={{ textAlign: "left" }}
-              >
-                Password
-              </Typography>
-              <TextField
-                fullWidth
-                id="password"
-                placeholder="Enter Password"
-                type={showPassword ? "text" : "password"}
-                sx={textFieldStyle}
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton
-                        edge="end"
-                        onClick={handleClickShowPassword}
-                        aria-label={
-                          showPassword ? "Hide password" : "Show password"
-                        }
-                      >
-                        {showPassword ? <VisibilityOff /> : <Visibility />}
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
-              />
-              <Box sx={{ width: "100%", textAlign: "end" }}>
+              <Box>
+                <PasswordField label="Password" />
+              </Box>
+              <Box sx={{ width: "100%", textAlign: "end", p: 1 }}>
                 <Link href="#" variant="subtitle1">
                   Forgot Password?
                 </Link>
