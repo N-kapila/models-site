@@ -4,13 +4,14 @@ import LoginPage from "../app/user-login/page";
 import Footer from "../app/footer/page";
 import Searchpage from "../app/search-page/page";
 import UserSettings from "../app/user-settings/page";
+import UserProfile from "./user-profile/page";
 
 export default function Home() {
   return (
     <>
       <Header />
 
-      <UserSettings />
+      <UserProfile />
 
       <Footer />
     </>
