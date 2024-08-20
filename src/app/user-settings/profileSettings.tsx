@@ -320,15 +320,13 @@ const ProfileSettings: React.FC = () => {
       </Box>
 
       <Box>
-        <Typography variant="subtitle2" gutterBottom>
-          Bio
-        </Typography>
-        <TextField
-          fullWidth
-          id="outlined-multiline-static"
-          multiline
-          rows={4}
-          placeholder="Enter your Bio"
+        <LabeledTextField
+          label="Bio"
+          textFieldProps={{
+            placeholder: "Enter your Bio",
+            multiline: true,
+            rows: 4,
+          }}
         />
       </Box>
 

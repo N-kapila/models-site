@@ -12,7 +12,13 @@ const Page: React.FC<LabeledTextFieldProps> = ({ label, textFieldProps }) => {
       <Typography variant="subtitle2" gutterBottom>
         {label}
       </Typography>
-      <TextField fullWidth size="small" {...textFieldProps} />
+      <TextField
+        fullWidth
+        size="small"
+        multiline={textFieldProps?.multiline}
+        rows={textFieldProps?.rows}
+        {...textFieldProps}
+      />
     </Box>
   );
 };

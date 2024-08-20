@@ -472,6 +472,7 @@ const UserProfile = () => {
                   <IconButton
                     sx={{
                       color: "black",
+                      p: 2,
                       "&:hover": {
                         color: "blue",
                       },
@@ -482,6 +483,7 @@ const UserProfile = () => {
                   <IconButton
                     sx={{
                       color: "black",
+                      p: 2,
                       "&:hover": {
                         color: "black",
                       },
