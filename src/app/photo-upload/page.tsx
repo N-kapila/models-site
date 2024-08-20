@@ -22,9 +22,20 @@ const Page: React.FC = () => {
         alignItems: "center",
       }}
     >
-      <Typography variant="h4" gutterBottom>
+      <Typography
+        variant="h4"
+        gutterBottom
+        sx={{
+          fontSize: {
+            xs: "1.5rem", // Adjust font size for xs screens
+            sm: "2rem", // Adjust font size for sm screens if needed
+            md: "3rem", // Default size for md and above if needed
+          },
+        }}
+      >
         Create Gallery or Album
       </Typography>
+
       <Card sx={{ width: "80%" }}>
         <CardContent>
           <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
