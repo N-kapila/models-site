@@ -35,6 +35,7 @@ import ModeCommentIcon from "@mui/icons-material/ModeComment";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ModeCommentOutlinedIcon from "@mui/icons-material/ModeCommentOutlined";
 import CloseIcon from "@mui/icons-material/Close";
+import PersonAddAltOutlinedIcon from "@mui/icons-material/PersonAddAltOutlined";
 import Link from "next/link";
 import { useMediaQuery, useTheme } from "@mui/material";
 
@@ -250,10 +251,19 @@ const UserProfile = () => {
               justifyContent: "center",
             }}
           >
+            <Tooltip title="Follow" arrow>
+              <Link href="" passHref>
+                <IconButton aria-label="Edit" size="large" sx={{ mb: 1 }}>
+                  <PersonAddAltOutlinedIcon
+                    sx={{ fontSize: 25, color: "Black" }}
+                  />
+                </IconButton>
+              </Link>
+            </Tooltip>
             <Tooltip title="Edit Profile" arrow>
               <Link href="/user-settings" passHref>
                 <IconButton aria-label="Edit" size="large" sx={{ mb: 1 }}>
-                  <EditIcon />
+                  <EditIcon sx={{ fontSize: 25 }} />
                 </IconButton>
               </Link>
             </Tooltip>
@@ -268,7 +278,6 @@ const UserProfile = () => {
                 <ShareIcon sx={{ fontSize: 25, color: "blue" }} />
               </IconButton>
             </Tooltip>
-
             <Tooltip title="Phone" arrow>
               <IconButton
                 aria-label="Phone"
@@ -280,7 +289,6 @@ const UserProfile = () => {
                 <PhoneEnabledIcon sx={{ fontSize: 25, color: "#162950" }} />
               </IconButton>
             </Tooltip>
-
             <Tooltip title="Mail" arrow>
               <IconButton
                 aria-label="Email"
