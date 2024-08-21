@@ -15,6 +15,8 @@ import {
   CardActions,
   Dialog,
   useMediaQuery,
+  Menu,
+  MenuItem,
 } from "@mui/material";
 import { styled, Theme } from "@mui/material/styles";
 import CloseIcon from "@mui/icons-material/Close";
@@ -123,6 +125,9 @@ const effect = keyframes`
 //   }
 `;
 
+const options = ["Save Post", "Copy Link", "Report"];
+const ITEM_HEIGHT = 48;
+
 const Page: React.FC = () => {
   const [open, setOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -145,6 +150,17 @@ const Page: React.FC = () => {
     setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
   };
 
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const MenuOpen = Boolean(anchorEl);
+
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
     <Box sx={{ flexGrow: 1, p: 3 }}>
       <Card sx={{ minWidth: 345 }}>
@@ -155,13 +171,34 @@ const Page: React.FC = () => {
             </Avatar>
           }
           action={
-            <IconButton aria-label="settings">
-              <MoreVertIcon />
-            </IconButton>
+            <>
+              <IconButton aria-label="settings" onClick={handleClick}>
+                <MoreVertIcon />
+              </IconButton>
+              <Menu
+                id="long-menu"
+                anchorEl={anchorEl}
+                open={MenuOpen}
+                onClose={handleMenuClose}
+                PaperProps={{
+                  style: {
+                    maxHeight: ITEM_HEIGHT * 4.5, // Adjust max height based on the number of items
+                    width: "15ch", // Adjust width as needed
+                  },
+                }}
+              >
+                {options.map((option) => (
+                  <MenuItem key={option} onClick={handleClose}>
+                    {option}
+                  </MenuItem>
+                ))}
+              </Menu>
+            </>
           }
           title="Shrimp and Chorizo Paella"
           subheader="September 14, 2016"
         />
+
         <CardContent>
           <Typography variant="body2" color="text.secondary">
             This impressive paella is a perfect party dish and a fun meal to
@@ -185,6 +222,10 @@ const Page: React.FC = () => {
                         md: 300,
                       },
                       cursor: "pointer",
+                      transition: "transform 0.3s ease-in-out",
+                      "&:hover": {
+                        transform: "scale(1.15)",
+                      },
                     }}
                     onClick={() => handleOpen(index)}
                   />
