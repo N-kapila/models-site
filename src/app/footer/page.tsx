@@ -1,10 +1,11 @@
 "use client";
 
 import React from "react";
-import { Container, Box, Typography, Link, IconButton } from "@mui/material";
+import { Container, Box, Typography, IconButton } from "@mui/material";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import Link from "next/link";
 
 const page: React.FC = () => {
   return (
@@ -13,9 +14,10 @@ const page: React.FC = () => {
       sx={{
         py: 3,
         px: 2,
-        mt: "auto",
+        mt: 3,
         backgroundColor: "#000000",
         color: "#ffffff",
+        zIndex: 0,
       }}
     >
       <Container maxWidth="lg">
@@ -26,35 +28,29 @@ const page: React.FC = () => {
             alignItems: "center",
           }}
         >
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: "flex", md: "flex" },
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "#ffffff",
-              textDecoration: "none",
-            }}
-          >
-            LOGO
-          </Typography>
+          <Link href="/" passHref>
+            <img
+              src="/assets/logo5.png"
+              alt="Logo"
+              style={{
+                height: "70px",
+                width: "auto",
+                cursor: "pointer",
+              }}
+            />
+          </Link>
 
-          <Box>
-            <Link href="/" color="inherit" sx={{ mx: 1 }}>
+          <Box sx={{ display: "flex", gap: 2 }}>
+            <Link href="/" color="inherit">
               Home
             </Link>
-            <Link href="/terms" color="inherit" sx={{ mx: 1 }}>
+            <Link href="/#" color="inherit">
               Terms & Conditions
             </Link>
-            <Link href="/service" color="inherit" sx={{ mx: 1 }}>
+            <Link href="/#" color="inherit">
               Terms of Service
             </Link>
-            <Link href="/privacy" color="inherit" sx={{ mx: 1 }}>
+            <Link href="/#" color="inherit">
               Privacy Policy
             </Link>
           </Box>

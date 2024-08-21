@@ -30,8 +30,7 @@ import MailIcon from "@mui/icons-material/Mail";
 import userimg from "../../../public/assets/user.png";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import { useClickAway } from "react-use";
-
-const settings = ["Profile", "Settings", "Logout"];
+import Link from "next/link";
 
 interface StyledInputBaseProps extends InputBaseProps {
   expanded: boolean;
@@ -74,6 +73,11 @@ const page: React.FC = () => {
   const searchRef = React.useRef<HTMLDivElement>(null);
   const drawerRef = React.useRef<HTMLDivElement>(null);
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const settings = [
+    { label: "Profile", path: "/user-profile" },
+    { label: "Settings", path: "/user-settings" },
+    { label: "Logout", path: "/" },
+  ];
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -184,44 +188,46 @@ const page: React.FC = () => {
             width: "100%",
             alignItems: "center",
             backgroundColor: "#000000",
+            ml: 3,
           }}
         >
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
+          {/* Desktop Logo */}
+          <Box
             sx={{
-              mr: 2,
               display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
             }}
           >
-            LOGO
-          </Typography>
+            <Link href="/" passHref>
+              <img
+                src="/assets/logo4.png"
+                alt="Logo"
+                style={{
+                  height: "50px",
+                  width: "auto",
+                  cursor: "pointer",
+                }}
+              />
+            </Link>
+          </Box>
 
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="/"
+          {/* Mobile Logo */}
+          <Box
             sx={{
-              mr: 2,
               display: { xs: "flex", md: "none" },
-              flexGrow: 1,
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
             }}
           >
-            LOGO
-          </Typography>
+            <Link href="/" passHref>
+              <img
+                src="/assets/logo4.png"
+                alt="Logo"
+                style={{
+                  height: "40px",
+                  width: "auto",
+                  cursor: "pointer",
+                }}
+              />
+            </Link>
+          </Box>
         </Toolbar>
 
         <Box sx={{ display: { xs: "flex", md: "none" } }}>
@@ -290,8 +296,22 @@ const page: React.FC = () => {
             onClose={handleCloseUserMenu}
           >
             {settings.map((setting) => (
-              <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                <Typography textAlign="center">{setting}</Typography>
+              <MenuItem key={setting.label} onClick={handleCloseUserMenu}>
+                <Link href={setting.path} passHref>
+                  <Typography
+                    textAlign="center"
+                    component="a"
+                    sx={{
+                      textDecoration: "none", // Ensure underline is removed
+                      color: "black",
+                      "&:hover": {
+                        color: "inherit",
+                      },
+                    }}
+                  >
+                    {setting.label}
+                  </Typography>
+                </Link>
               </MenuItem>
             ))}
           </Menu>
