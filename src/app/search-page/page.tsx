@@ -14,6 +14,7 @@ import {
   Stack,
   Typography,
   Button,
+  Divider,
 } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
 import { useMediaQuery, useTheme } from "@mui/material";
@@ -101,7 +102,9 @@ const page: React.FC = () => {
             <Stack spacing={2} sx={{ mt: 3 }}>
               <Typography variant="h6" gutterBottom sx={{ color: "#000000" }}>
                 Catagories
+                <Divider />
               </Typography>
+
               <Button variant="outlined" fullWidth>
                 Catagory one
               </Button>
