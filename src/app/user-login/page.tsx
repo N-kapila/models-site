@@ -9,13 +9,9 @@ import {
   Button,
   Divider,
   Typography,
-  TextField,
   Link,
-  InputAdornment,
-  IconButton,
 } from "@mui/material";
 import Image from "next/image";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
 import FacebookRoundedIcon from "@mui/icons-material/FacebookRounded";
 import loginImg from "../../../public/assets/loginImg.jpg";
 import googleIcon from "../../../public/assets/LogoGoogle.png";
@@ -44,24 +40,12 @@ const DottedDivider = styled(Divider)(({ theme }) => ({
   },
 }));
 
-const textFieldStyle = {
-  marginBottom: "16px",
-  "& .MuiInputBase-root": {
-    height: "40px",
-    display: "flex",
-    alignItems: "center",
-  },
-  "& .MuiInputLabel-root": {
-    top: "-6px",
-  },
-};
-
 export default function page() {
-  const [showPassword, setShowPassword] = React.useState(false);
+  // const [showPassword, setShowPassword] = React.useState(false);
 
-  const handleClickShowPassword = () => {
-    setShowPassword(!showPassword);
-  };
+  // const handleClickShowPassword = () => {
+  //   setShowPassword(!showPassword);
+  // };
   return (
     <Box sx={{ flexGrow: 1, padding: 1 }}>
       <Grid container spacing={2}>
@@ -79,7 +63,16 @@ export default function page() {
               <Typography variant="subtitle1" gutterBottom sx={{ mr: 1 }}>
                 Create an account?
               </Typography>
-              <Link href="/user-register" variant="subtitle1" underline="none">
+              <Link
+                href="/user-register"
+                variant="subtitle1"
+                underline="none"
+                sx={{
+                  "&:hover": {
+                    textDecoration: "underline",
+                  },
+                }}
+              >
                 Signup
               </Link>
             </Box>

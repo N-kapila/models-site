@@ -64,9 +64,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create("width"),
     [theme.breakpoints.up("sm")]: {
-      width: "12ch",
+      width: "20ch",
       "&:focus": {
-        width: "20ch",
+        width: "30ch",
       },
     },
   },
@@ -98,8 +98,10 @@ const page: React.FC = () => {
         <Box
           sx={{
             width: "100%",
-            display: { xs: "flex", md: "none" },
+            display: { xs: "flex", sm: "flex", md: "none" },
+            pb: 0,
             p: 3,
+            justifyContent: "center",
           }}
         >
           <Search>
