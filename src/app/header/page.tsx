@@ -199,7 +199,7 @@ const page: React.FC = () => {
           >
             <Link href="/" passHref>
               <img
-                src="/assets/logo4.png"
+                src="/assets/logo5.png"
                 alt="Logo"
                 style={{
                   height: "50px",
@@ -218,7 +218,7 @@ const page: React.FC = () => {
           >
             <Link href="/" passHref>
               <img
-                src="/assets/logo4.png"
+                src="/assets/logo5.png"
                 alt="Logo"
                 style={{
                   height: "40px",

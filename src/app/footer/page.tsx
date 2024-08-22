@@ -13,11 +13,10 @@ const page: React.FC = () => {
       component="footer"
       sx={{
         py: 3,
-        px: 2,
+        px: 0,
         mt: 3,
         backgroundColor: "#000000",
         color: "#ffffff",
-        zIndex: 0,
       }}
     >
       <Container maxWidth="lg">
@@ -28,19 +27,26 @@ const page: React.FC = () => {
             alignItems: "center",
           }}
         >
-          <Link href="/" passHref>
-            <img
-              src="/assets/logo5.png"
-              alt="Logo"
-              style={{
-                height: "70px",
-                width: "auto",
-                cursor: "pointer",
-              }}
-            />
-          </Link>
+          {/* Desktop View */}
+          <Box
+            sx={{
+              display: { xs: "none", sm: "flex" },
+            }}
+          >
+            <Link href="/" passHref>
+              <img
+                src="/assets/logo5.png"
+                alt="Logo"
+                style={{
+                  height: "50px",
+                  width: "auto",
+                  cursor: "pointer",
+                }}
+              />
+            </Link>
+          </Box>
 
-          <Box sx={{ display: "flex", gap: 2 }}>
+          <Box sx={{ display: { xs: "none", sm: "flex" }, gap: 2 }}>
             <Link href="/" color="inherit">
               Home
             </Link>
@@ -54,7 +60,12 @@ const page: React.FC = () => {
               Privacy Policy
             </Link>
           </Box>
-          <Box>
+
+          <Box
+            sx={{
+              display: { xs: "none", sm: "flex" },
+            }}
+          >
             <IconButton
               href="https://www.facebook.com"
               target="_blank"
@@ -77,10 +88,98 @@ const page: React.FC = () => {
               <LinkedInIcon />
             </IconButton>
           </Box>
+
+          {/* Mobile View */}
+
+          <Box
+            sx={{
+              display: { xs: "flex", sm: "none" },
+            }}
+          >
+            <Link href="/" passHref>
+              <img
+                src="/assets/logo6.png"
+                alt="Logo"
+                style={{
+                  height: "50px",
+                  width: "auto",
+                  cursor: "pointer",
+                }}
+              />
+            </Link>
+          </Box>
+
+          <Box
+            sx={{
+              display: { xs: "flex", sm: "none" },
+              fontSize: "11px",
+              gap: 1,
+              ml: 3,
+            }}
+          >
+            <Link href="/" color="inherit">
+              Home
+            </Link>
+            <Link href="/#" color="inherit">
+              Terms & Conditions
+            </Link>
+            <Link href="/#" color="inherit">
+              Privacy Policy
+            </Link>
+          </Box>
+
+          <Box
+            sx={{
+              display: { xs: "flex", sm: "none" },
+            }}
+          >
+            <IconButton
+              href="https://www.facebook.com"
+              target="_blank"
+              color="inherit"
+            >
+              <FacebookIcon fontSize="small" />
+            </IconButton>
+            <IconButton
+              href="https://www.twitter.com"
+              target="_blank"
+              color="inherit"
+            >
+              <TwitterIcon fontSize="small" />
+            </IconButton>
+            <IconButton
+              href="https://www.linkedin.com"
+              target="_blank"
+              color="inherit"
+            >
+              <LinkedInIcon fontSize="small" />
+            </IconButton>
+          </Box>
         </Box>
 
-        <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
+        {/* Dekstop View */}
+        <Box
+          sx={{
+            display: { xs: "none", sm: "flex" },
+            justifyContent: "center",
+            mt: 2,
+          }}
+        >
           <Typography variant="body1">
+            &copy; {new Date().getFullYear()} Vista Models Site. All Rights
+            Reserved.
+          </Typography>
+        </Box>
+
+        {/* Mobile View */}
+        <Box
+          sx={{
+            display: { xs: "flex", sm: "none" },
+            justifyContent: "center",
+            mt: 2,
+          }}
+        >
+          <Typography variant="overline" display="block" gutterBottom>
             &copy; {new Date().getFullYear()} Vista Models Site. All Rights
             Reserved.
           </Typography>

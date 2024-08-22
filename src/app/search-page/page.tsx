@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { styled } from "@mui/material/styles";
+import { styled, alpha } from "@mui/material/styles";
 import {
   Box,
   Paper,
@@ -15,8 +15,10 @@ import {
   Typography,
   Button,
   Divider,
+  InputBase,
 } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
+import SearchIcon from "@mui/icons-material/Search";
 import { useMediaQuery, useTheme } from "@mui/material";
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -25,6 +27,49 @@ const Item = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(1),
   textAlign: "center",
   color: theme.palette.text.secondary,
+}));
+
+const Search = styled("div")(({ theme }) => ({
+  position: "relative",
+  borderRadius: theme.shape.borderRadius,
+  backgroundColor: alpha(theme.palette.common.white, 0.15),
+  "&:hover": {
+    backgroundColor: alpha(theme.palette.common.white, 0.25),
+  },
+  marginLeft: 0,
+  width: "100%",
+  [theme.breakpoints.up("sm")]: {
+    marginLeft: theme.spacing(1),
+    width: "auto",
+  },
+}));
+
+const SearchIconWrapper = styled("div")(({ theme }) => ({
+  padding: theme.spacing(0, 2),
+  height: "100%",
+  position: "absolute",
+  pointerEvents: "none",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+}));
+
+const StyledInputBase = styled(InputBase)(({ theme }) => ({
+  color: "inherit",
+  borderRadius: "8px",
+  boxShadow: "3px 3px 5px rgba(0, 0, 0, 0.2)",
+  width: "100%",
+  "& .MuiInputBase-input": {
+    padding: theme.spacing(1, 1, 1, 0),
+    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+    transition: theme.transitions.create("width"),
+    [theme.breakpoints.up("sm")]: {
+      width: "12ch",
+      "&:focus": {
+        width: "20ch",
+      },
+    },
+  },
 }));
 
 const page: React.FC = () => {
@@ -50,12 +95,29 @@ const page: React.FC = () => {
   return (
     <Box sx={{ flexGrow: 1, p: 2 }}>
       <Grid container spacing={2}>
+        <Box
+          sx={{
+            width: "100%",
+            display: { xs: "flex", md: "none" },
+            p: 3,
+          }}
+        >
+          <Search>
+            <SearchIconWrapper>
+              <SearchIcon />
+            </SearchIconWrapper>
+            <StyledInputBase
+              placeholder="Search…"
+              inputProps={{ "aria-label": "search" }}
+            />
+          </Search>
+        </Box>
         <Grid item xs={12} md={8} sx={{ order: { xs: 2, md: 1 } }}>
           <Item>
             <ImageList
               sx={{ width: "100%", height: "calc(100vh - 100px)", p: 2 }}
               cols={getCols()}
-              rowHeight={164}
+              rowHeight={210}
               gap={getGap()}
             >
               {itemData.map((item) => (
