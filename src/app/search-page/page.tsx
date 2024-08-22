@@ -20,6 +20,7 @@ import {
 import InfoIcon from "@mui/icons-material/Info";
 import SearchIcon from "@mui/icons-material/Search";
 import { useMediaQuery, useTheme } from "@mui/material";
+import Layout from "../components/Layout";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -93,102 +94,109 @@ const page: React.FC = () => {
   };
 
   return (
-    <Box sx={{ flexGrow: 1, p: 2 }}>
-      <Grid container spacing={2}>
-        <Box
-          sx={{
-            width: "100%",
-            display: { xs: "flex", sm: "flex", md: "none" },
-            pb: 0,
-            p: 3,
-            justifyContent: "center",
-          }}
-        >
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ "aria-label": "search" }}
-            />
-          </Search>
-        </Box>
-        <Grid item xs={12} md={8} sx={{ order: { xs: 2, md: 1 } }}>
-          <Item>
-            <ImageList
-              sx={{ width: "100%", height: "calc(100vh - 100px)", p: 2 }}
-              cols={getCols()}
-              rowHeight={210}
-              gap={getGap()}
-            >
-              {itemData.map((item) => (
-                <ImageListItem key={item.img}>
-                  <img
-                    srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
-                    src={`${item.img}?w=248&fit=crop&auto=format`}
-                    alt={item.title}
-                    loading="lazy"
-                    style={{ borderRadius: "10px" }}
-                  />
-                  <ImageListItemBar
-                    sx={{ position: "absolute", bottom: 0, left: 0, right: 0 }}
-                    title={item.title}
-                    subtitle={item.author}
-                    actionIcon={
-                      <IconButton
-                        sx={{ color: "rgba(255, 255, 255, 0.54)" }}
-                        aria-label={`info about ${item.title}`}
-                      >
-                        <InfoIcon />
-                      </IconButton>
-                    }
-                  />
-                </ImageListItem>
-              ))}
-            </ImageList>
-            <Stack
-              spacing={2}
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                width: "100%",
-                p: 2,
-              }}
-            >
-              <Pagination count={10} color="primary" />
-            </Stack>
-          </Item>
-        </Grid>
-        <Grid item xs={12} md={4} sx={{ order: { xs: 1, md: 2 } }}>
-          <Item>
-            <Stack spacing={2} sx={{ mt: 3 }}>
-              <Typography variant="h6" gutterBottom sx={{ color: "#000000" }}>
-                Catagories
-                <Divider />
-              </Typography>
+    <Layout>
+      <Box sx={{ flexGrow: 1, p: 2 }}>
+        <Grid container spacing={2}>
+          <Box
+            sx={{
+              width: "100%",
+              display: { xs: "flex", sm: "flex", md: "none" },
+              pb: 0,
+              p: 3,
+              justifyContent: "center",
+            }}
+          >
+            <Search>
+              <SearchIconWrapper>
+                <SearchIcon />
+              </SearchIconWrapper>
+              <StyledInputBase
+                placeholder="Search…"
+                inputProps={{ "aria-label": "search" }}
+              />
+            </Search>
+          </Box>
+          <Grid item xs={12} md={8} sx={{ order: { xs: 2, md: 1 } }}>
+            <Item>
+              <ImageList
+                sx={{ width: "100%", height: "calc(100vh - 100px)", p: 2 }}
+                cols={getCols()}
+                rowHeight={210}
+                gap={getGap()}
+              >
+                {itemData.map((item) => (
+                  <ImageListItem key={item.img}>
+                    <img
+                      srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                      src={`${item.img}?w=248&fit=crop&auto=format`}
+                      alt={item.title}
+                      loading="lazy"
+                      style={{ borderRadius: "10px" }}
+                    />
+                    <ImageListItemBar
+                      sx={{
+                        position: "absolute",
+                        bottom: 0,
+                        left: 0,
+                        right: 0,
+                      }}
+                      title={item.title}
+                      subtitle={item.author}
+                      actionIcon={
+                        <IconButton
+                          sx={{ color: "rgba(255, 255, 255, 0.54)" }}
+                          aria-label={`info about ${item.title}`}
+                        >
+                          <InfoIcon />
+                        </IconButton>
+                      }
+                    />
+                  </ImageListItem>
+                ))}
+              </ImageList>
+              <Stack
+                spacing={2}
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  width: "100%",
+                  p: 2,
+                }}
+              >
+                <Pagination count={10} color="primary" />
+              </Stack>
+            </Item>
+          </Grid>
+          <Grid item xs={12} md={4} sx={{ order: { xs: 1, md: 2 } }}>
+            <Item>
+              <Stack spacing={2} sx={{ mt: 3 }}>
+                <Typography variant="h6" gutterBottom sx={{ color: "#000000" }}>
+                  Catagories
+                  <Divider />
+                </Typography>
 
-              <Button variant="outlined" fullWidth>
-                Catagory one
-              </Button>
-              <Button variant="outlined" fullWidth>
-                Catagory Two
-              </Button>
-              <Button variant="outlined" fullWidth>
-                Catagory Three
-              </Button>
-              <Button variant="outlined" fullWidth>
-                Catagory Four
-              </Button>
-              <Button variant="outlined" fullWidth>
-                Catagory Five
-              </Button>
-            </Stack>
-          </Item>
+                <Button variant="outlined" fullWidth>
+                  Catagory one
+                </Button>
+                <Button variant="outlined" fullWidth>
+                  Catagory Two
+                </Button>
+                <Button variant="outlined" fullWidth>
+                  Catagory Three
+                </Button>
+                <Button variant="outlined" fullWidth>
+                  Catagory Four
+                </Button>
+                <Button variant="outlined" fullWidth>
+                  Catagory Five
+                </Button>
+              </Stack>
+            </Item>
+          </Grid>
         </Grid>
-      </Grid>
-    </Box>
+      </Box>
+    </Layout>
   );
 };
 

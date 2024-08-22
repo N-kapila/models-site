@@ -12,7 +12,6 @@ import {
   InputBaseProps,
   Menu,
   Avatar,
-  Tooltip,
   MenuItem,
   Badge,
   Drawer,
@@ -251,17 +250,6 @@ const page: React.FC = () => {
           </Box>
         </Toolbar>
 
-        <Box sx={{ display: { xs: "flex", md: "none" } }}>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-          >
-            <MenuIcon />
-          </IconButton>
-        </Box>
-
         <Box
           sx={{
             display: { xs: "none", md: "flex" },
@@ -338,15 +326,20 @@ const page: React.FC = () => {
           </Menu>
         </Box>
 
-        <Tooltip title="Open settings">
-          <IconButton onClick={handleOpenUserMenu} sx={{ p: 3 }}>
-            <Avatar
-              sx={{ width: 25, height: 25 }}
-              alt="User"
-              src={userimg.src}
-            />
+        <IconButton onClick={handleOpenUserMenu} sx={{ p: 3 }}>
+          <Avatar sx={{ width: 25, height: 25 }} alt="User" src={userimg.src} />
+        </IconButton>
+
+        <Box sx={{ display: { xs: "flex", md: "none" } }}>
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            edge="start"
+            onClick={handleDrawerToggle}
+          >
+            <MenuIcon />
           </IconButton>
-        </Tooltip>
+        </Box>
       </AppBar>
 
       <Drawer

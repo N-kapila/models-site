@@ -26,6 +26,7 @@ import InterestsIcon from "@mui/icons-material/Interests";
 import StoreIcon from "@mui/icons-material/Store";
 import LocalFloristIcon from "@mui/icons-material/LocalFlorist";
 import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
+import Layout from "../components/Layout";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -83,109 +84,111 @@ const IconChip: React.FC<{
 
 function Page() {
   return (
-    <Box sx={{ flexGrow: 1, p: 3 }}>
-      <Grid container spacing={2}>
-        <Grid item xs={12} sm={11} md={9}>
-          {postPages.map((postPage, index) => (
-            <Box key={index} sx={{ mb: 2 }}>
-              {postPage}
-            </Box>
-          ))}
-        </Grid>
+    <Layout>
+      <Box sx={{ flexGrow: 1, p: 3 }}>
+        <Grid container spacing={2}>
+          <Grid item xs={12} sm={11} md={9}>
+            {postPages.map((postPage, index) => (
+              <Box key={index} sx={{ mb: 2 }}>
+                {postPage}
+              </Box>
+            ))}
+          </Grid>
 
-        <Grid
-          item
-          md={3}
-          sx={{
-            display: { xs: "none", sm: "none", md: "block" },
-            mt: 3,
-            position: "sticky",
-            top: 0,
-            height: "100vh",
-          }}
-        >
-          <Stack spacing={2}>
-            <Item>
-              <Typography variant="h5" gutterBottom sx={{ color: "black" }}>
-                Catagories
-                <Divider />
-                <Box sx={{ p: 2 }}>
-                  <IconChip
-                    label="Photographers"
-                    icon={<CameraAltIcon />}
-                    path="/"
-                  />
-                  <IconChip
-                    label="Models"
-                    icon={<LocalFloristIcon />}
-                    path="/"
-                  />
-                  <IconChip
-                    label="Salons"
-                    icon={<FaceRetouchingNaturalIcon />}
-                    path="/"
-                  />
-                  <IconChip
-                    label="Fashion Design"
-                    icon={<ColorLensIcon />}
-                    path="/"
-                  />
-                  <IconChip label="Shops" icon={<StoreIcon />} path="/" />
-                  <IconChip
-                    label="Makeup Artists"
-                    icon={<InterestsIcon />}
-                    path="/"
-                  />
+          <Grid
+            item
+            md={3}
+            sx={{
+              display: { xs: "none", sm: "none", md: "block" },
+              mt: 3,
+              position: "sticky",
+              top: 0,
+              height: "100vh",
+            }}
+          >
+            <Stack spacing={2}>
+              <Item>
+                <Typography variant="h5" gutterBottom sx={{ color: "black" }}>
+                  Catagories
+                  <Divider />
+                  <Box sx={{ p: 2 }}>
+                    <IconChip
+                      label="Photographers"
+                      icon={<CameraAltIcon />}
+                      path="/"
+                    />
+                    <IconChip
+                      label="Models"
+                      icon={<LocalFloristIcon />}
+                      path="/"
+                    />
+                    <IconChip
+                      label="Salons"
+                      icon={<FaceRetouchingNaturalIcon />}
+                      path="/"
+                    />
+                    <IconChip
+                      label="Fashion Design"
+                      icon={<ColorLensIcon />}
+                      path="/"
+                    />
+                    <IconChip label="Shops" icon={<StoreIcon />} path="/" />
+                    <IconChip
+                      label="Makeup Artists"
+                      icon={<InterestsIcon />}
+                      path="/"
+                    />
 
-                  {/* <IconChip
+                    {/* <IconChip
                     label="Model Agents/ Agenciess"
                     icon={<LocalFloristIcon />}
                     path="/"
                   /> */}
-                </Box>
-              </Typography>
-            </Item>
-            <Item>
-              <Typography variant="h6" gutterBottom sx={{ color: "black" }}>
-                Suggestions
-                <Divider />
-                <List
-                  dense
-                  sx={{
-                    width: "100%",
-                    maxWidth: 360,
-                    bgcolor: "background.paper",
-                  }}
-                >
-                  {[0, 1, 2, 3, 4].map((value) => {
-                    const labelId = `checkbox-list-secondary-label-${value}`;
-                    return (
-                      <ListItem key={value} disablePadding>
-                        <ListItemButton>
-                          <ListItemAvatar>
-                            <Avatar
-                              alt={`Avatar n°${value + 1}`}
-                              src={`/assets/${value + 1}.png`} // Adjusted path
+                  </Box>
+                </Typography>
+              </Item>
+              <Item>
+                <Typography variant="h6" gutterBottom sx={{ color: "black" }}>
+                  Suggestions
+                  <Divider />
+                  <List
+                    dense
+                    sx={{
+                      width: "100%",
+                      maxWidth: 360,
+                      bgcolor: "background.paper",
+                    }}
+                  >
+                    {[0, 1, 2, 3, 4].map((value) => {
+                      const labelId = `checkbox-list-secondary-label-${value}`;
+                      return (
+                        <ListItem key={value} disablePadding>
+                          <ListItemButton>
+                            <ListItemAvatar>
+                              <Avatar
+                                alt={`Avatar n°${value + 1}`}
+                                src={`/assets/${value + 1}.png`} // Adjusted path
+                              />
+                            </ListItemAvatar>
+                            <ListItemText
+                              id={labelId}
+                              primary={`Person ${value + 1}`}
                             />
-                          </ListItemAvatar>
-                          <ListItemText
-                            id={labelId}
-                            primary={`Person ${value + 1}`}
-                          />
-                          <IconButton aria-label="delete" size="small">
-                            <PersonAddAlt1Icon fontSize="small" />
-                          </IconButton>
-                        </ListItemButton>
-                      </ListItem>
-                    );
-                  })}
-                </List>
-              </Typography>
-            </Item>
-          </Stack>
+                            <IconButton aria-label="delete" size="small">
+                              <PersonAddAlt1Icon fontSize="small" />
+                            </IconButton>
+                          </ListItemButton>
+                        </ListItem>
+                      );
+                    })}
+                  </List>
+                </Typography>
+              </Item>
+            </Stack>
+          </Grid>
         </Grid>
-      </Grid>
-    </Box>
+      </Box>
+    </Layout>
   );
 }
 

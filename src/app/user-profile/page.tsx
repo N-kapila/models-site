@@ -40,6 +40,7 @@ import PersonAddAltOutlinedIcon from "@mui/icons-material/PersonAddAltOutlined";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import Link from "next/link";
 import { useMediaQuery, useTheme } from "@mui/material";
+import Layout from "../components/Layout";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -134,394 +135,398 @@ const UserProfile = () => {
   };
 
   return (
-    <Box
-      sx={{
-        width: "100vw",
-        // height: "100%",
-        margin: "0 auto",
-        boxShadow: 3,
-        overflow: "hidden",
-      }}
-    >
-      {/* Cover Photo */}
+    <Layout>
       <Box
         sx={{
-          height: 300,
-          backgroundImage: backgroundImage ? `url(${backgroundImage})` : "none",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          position: "relative",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          color: "white",
-          textAlign: "center",
-          border: "1px solid #ccc",
+          width: "100vw",
+          // height: "100%",
+          margin: "0 auto",
+          boxShadow: 3,
+          overflow: "hidden",
         }}
       >
-        {!backgroundImage && (
-          <Typography variant="h6" sx={{ color: "rgba(0, 0, 0, 0.6)" }}>
-            Upload a cover photo
-          </Typography>
-        )}
-        {/* Edit Cover Photo Button */}
-        <IconButton
-          aria-label="edit cover photo"
-          onClick={handleCoverClick}
-          sx={{
-            position: "absolute",
-            right: 16,
-            bottom: 16,
-            color: "#000000",
-            borderRadius: 2,
-            backgroundColor: "#e0e1e4",
-            padding: "4px 8px",
-            fontSize: "0.75rem",
-            "& .MuiSvgIcon-root": {
-              fontSize: "1rem",
-            },
-            "&:hover": {
-              backgroundColor: "#d0d2d5",
-            },
-          }}
-        >
-          <PhotoCameraIcon sx={{ mr: 0.5 }} />
-          <Typography variant="caption">Edit cover photo</Typography>
-        </IconButton>
-
-        <input
-          type="file"
-          ref={coverFileInputRef}
-          style={{ display: "none" }}
-          onChange={handleCoverFileChange}
-        />
-
-        {/* Profile Photo */}
+        {/* Cover Photo */}
         <Box
           sx={{
-            position: "absolute",
-            bottom: -80,
-            left: 50,
-            width: 160,
-            height: 160,
+            height: 300,
+            backgroundImage: backgroundImage
+              ? `url(${backgroundImage})`
+              : "none",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            position: "relative",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            color: "white",
+            textAlign: "center",
+            border: "1px solid #ccc",
           }}
         >
-          <Avatar
-            alt="User Profile"
-            src={profileImage || undefined}
-            sx={{
-              width: 170,
-              height: 170,
-              position: "absolute",
-              bottom: 0,
-              left: 0,
-              border: "5px solid white",
-              cursor: "pointer",
-            }}
-          />
+          {!backgroundImage && (
+            <Typography variant="h6" sx={{ color: "rgba(0, 0, 0, 0.6)" }}>
+              Upload a cover photo
+            </Typography>
+          )}
+          {/* Edit Cover Photo Button */}
           <IconButton
-            aria-label="edit profile photo"
-            onClick={handleProfileClick}
+            aria-label="edit cover photo"
+            onClick={handleCoverClick}
             sx={{
               position: "absolute",
-              bottom: 10,
-              right: 10,
-              color: "white",
-              backgroundColor: "rgba(0, 0, 0, 0.6)",
+              right: 16,
+              bottom: 16,
+              color: "#000000",
+              borderRadius: 2,
+              backgroundColor: "#e0e1e4",
+              padding: "4px 8px",
+              fontSize: "0.75rem",
+              "& .MuiSvgIcon-root": {
+                fontSize: "1rem",
+              },
               "&:hover": {
-                backgroundColor: "rgba(0, 0, 0, 0.8)",
+                backgroundColor: "#d0d2d5",
               },
             }}
           >
-            <PhotoCameraIcon />
+            <PhotoCameraIcon sx={{ mr: 0.5 }} />
+            <Typography variant="caption">Edit cover photo</Typography>
           </IconButton>
+
           <input
             type="file"
-            ref={profileFileInputRef}
+            ref={coverFileInputRef}
             style={{ display: "none" }}
-            onChange={handleProfileFileChange}
+            onChange={handleCoverFileChange}
           />
-        </Box>
-      </Box>
 
-      <Grid container>
-        <Grid item xs={12} sm={12} md={8}>
-          <Box sx={{ paddingTop: "100px", ml: 5 }}>
-            <Typography variant="h3" component="h1">
-              Nirmal Kapilarathne
-            </Typography>
-            <Typography variant="body1" color="gray">
-              1.8K friends
-            </Typography>
-          </Box>
-        </Grid>
-
-        <Grid item xs={12} sm={12} md={4}>
+          {/* Profile Photo */}
           <Box
             sx={{
-              mt: { md: "100px" },
-              display: "flex",
-              gap: 1,
-              justifyContent: "center",
+              position: "absolute",
+              bottom: -80,
+              left: 50,
+              width: 160,
+              height: 160,
             }}
           >
-            <Tooltip title="Follow" arrow>
-              <Link href="" passHref>
-                <IconButton aria-label="Edit" size="large" sx={{ mb: 1 }}>
-                  <PersonAddAltOutlinedIcon
-                    sx={{ fontSize: 25, color: "Black" }}
-                  />
-                </IconButton>
-              </Link>
-            </Tooltip>
-            <Tooltip title="Edit Profile" arrow>
-              <Link href="/user-settings" passHref>
-                <IconButton aria-label="Edit" size="large" sx={{ mb: 1 }}>
-                  <EditIcon sx={{ fontSize: 25 }} />
-                </IconButton>
-              </Link>
-            </Tooltip>
-            <Tooltip title="Share Profile" arrow>
-              <IconButton
-                aria-label="Share"
-                size="large"
-                sx={{
-                  mb: 1,
-                }}
-              >
-                <ShareIcon sx={{ fontSize: 25, color: "blue" }} />
-              </IconButton>
-            </Tooltip>
-            <Tooltip title="Phone" arrow>
-              <IconButton
-                aria-label="Phone"
-                size="large"
-                sx={{
-                  mb: 1,
-                }}
-              >
-                <PhoneEnabledIcon sx={{ fontSize: 25, color: "#162950" }} />
-              </IconButton>
-            </Tooltip>
-            <Tooltip title="Mail" arrow>
-              <IconButton
-                aria-label="Email"
-                size="large"
-                sx={{
-                  mb: 1,
-                }}
-              >
-                <MailOutlineIcon sx={{ fontSize: 25, color: "#34A853" }} />
-              </IconButton>
-            </Tooltip>
-            <Tooltip title="WhatsApp" arrow>
-              <IconButton
-                aria-label="whatsapp"
-                size="large"
-                sx={{
-                  mb: 1,
-                }}
-              >
-                <WhatsAppIcon sx={{ fontSize: 25, color: "#075E54" }} />
-              </IconButton>
-            </Tooltip>
-          </Box>
-        </Grid>
-      </Grid>
-
-      <Box sx={{ pl: 5, pr: 5 }}>
-        <Typography variant="subtitle1" gutterBottom>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book.
-        </Typography>
-      </Box>
-
-      <Grid container spacing={1} sx={{ mt: 5, ml: 2 }}>
-        <Grid
-          item
-          md={2}
-          sx={{ display: { xs: "none", sm: "none", md: "block" } }}
-        >
-          <Item>
-            {" "}
-            <Typography variant="h6" gutterBottom sx={{ color: "black" }}>
-              Followings
-              <Divider />
-              <List
-                dense
-                sx={{
-                  width: "100%",
-                  maxWidth: 360,
-                  bgcolor: "background.paper",
-                }}
-              >
-                {[0, 1, 2, 3].map((value) => {
-                  const labelId = `checkbox-list-secondary-label-${value}`;
-                  return (
-                    <ListItem key={value} disablePadding>
-                      <ListItemButton>
-                        <ListItemAvatar>
-                          <Avatar
-                            alt={`Avatar n°${value + 1}`}
-                            src={`/static/images/avatar/${value + 1}.jpg`}
-                          />
-                        </ListItemAvatar>
-                        <ListItemText
-                          id={labelId}
-                          primary={`Person ${value + 1}`}
-                        />
-                      </ListItemButton>
-                    </ListItem>
-                  );
-                })}
-              </List>
-            </Typography>
-          </Item>
-        </Grid>
-
-        <Grid item xs={11} md={9.5}>
-          <Item>
-            <ImageList
-              sx={{ width: "100%", height: "100%" }}
-              cols={cols}
-              rowHeight={164 + 20}
-              gap={8}
+            <Avatar
+              alt="User Profile"
+              src={profileImage || undefined}
+              sx={{
+                width: 170,
+                height: 170,
+                position: "absolute",
+                bottom: 0,
+                left: 0,
+                border: "5px solid white",
+                cursor: "pointer",
+              }}
+            />
+            <IconButton
+              aria-label="edit profile photo"
+              onClick={handleProfileClick}
+              sx={{
+                position: "absolute",
+                bottom: 10,
+                right: 10,
+                color: "white",
+                backgroundColor: "rgba(0, 0, 0, 0.6)",
+                "&:hover": {
+                  backgroundColor: "rgba(0, 0, 0, 0.8)",
+                },
+              }}
             >
-              {itemData.map((item: ImageItem) => (
-                <ImageListItem
-                  key={item.img}
-                  sx={{ position: "relative" }}
-                  onClick={() => handleClickOpen(item)}
-                  style={{ cursor: "pointer" }}
-                >
-                  <img
-                    srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-                    src={`${item.img}?w=164&h=164&fit=crop&auto=format`}
-                    alt={item.title}
-                    loading="lazy"
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                    }}
-                  />
-                  <IconButton
-                    sx={{
-                      position: "absolute",
-                      bottom: 45,
-                      left: 3,
-                      color: "white",
-                      "&:hover": {
-                        color: "red",
-                      },
-                    }}
-                  >
-                    <FavoriteIcon />
-                  </IconButton>
-                  <IconButton
-                    sx={{
-                      position: "absolute",
-                      bottom: 5,
-                      left: 3,
-                      color: "white",
-                      "&:hover": {
-                        color: "blue",
-                      },
-                    }}
-                  >
-                    <ModeCommentIcon />
-                  </IconButton>
-                </ImageListItem>
-              ))}
-            </ImageList>
+              <PhotoCameraIcon />
+            </IconButton>
+            <input
+              type="file"
+              ref={profileFileInputRef}
+              style={{ display: "none" }}
+              onChange={handleProfileFileChange}
+            />
+          </Box>
+        </Box>
 
-            <Dialog open={open} onClose={handleClose} maxWidth="md" fullWidth>
-              <DialogTitle
-                sx={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                }}
-              >
-                {selectedImage?.profileName}
+        <Grid container>
+          <Grid item xs={12} sm={12} md={8}>
+            <Box sx={{ paddingTop: "100px", ml: 5 }}>
+              <Typography variant="h3" component="h1">
+                Nirmal Kapilarathne
+              </Typography>
+              <Typography variant="body1" color="gray">
+                1.8K friends
+              </Typography>
+            </Box>
+          </Grid>
 
+          <Grid item xs={12} sm={12} md={4}>
+            <Box
+              sx={{
+                mt: { md: "100px" },
+                display: "flex",
+                gap: 1,
+                justifyContent: "center",
+              }}
+            >
+              <Tooltip title="Follow" arrow>
+                <Link href="" passHref>
+                  <IconButton aria-label="Edit" size="large" sx={{ mb: 1 }}>
+                    <PersonAddAltOutlinedIcon
+                      sx={{ fontSize: 25, color: "Black" }}
+                    />
+                  </IconButton>
+                </Link>
+              </Tooltip>
+              <Tooltip title="Edit Profile" arrow>
+                <Link href="/user-settings" passHref>
+                  <IconButton aria-label="Edit" size="large" sx={{ mb: 1 }}>
+                    <EditIcon sx={{ fontSize: 25 }} />
+                  </IconButton>
+                </Link>
+              </Tooltip>
+              <Tooltip title="Share Profile" arrow>
                 <IconButton
-                  aria-label="close"
-                  onClick={handleClose}
+                  aria-label="Share"
+                  size="large"
                   sx={{
-                    color: "black",
+                    mb: 1,
                   }}
                 >
-                  <CloseIcon />
+                  <ShareIcon sx={{ fontSize: 25, color: "blue" }} />
                 </IconButton>
-              </DialogTitle>
-
-              <Box sx={{ display: "flex", ml: 3 }}>
-                <LocationOnOutlinedIcon fontSize="small" />
-                <Typography variant="subtitle2" gutterBottom>
-                  {selectedImage?.location}
-                </Typography>
-              </Box>
-
-              <DialogContent>
-                <img
-                  src={`${selectedImage?.img}?w=800&h=600&fit=crop&auto=format`}
-                  alt={selectedImage?.title}
-                  style={{ width: "100%", height: "auto" }}
-                />
-                <Box sx={{ p: 2 }}>
-                  <IconButton
-                    sx={{
-                      color: "Black",
-                      p: 2,
-                      "&:hover": {
-                        color: "red",
-                      },
-                    }}
-                  >
-                    <FavoriteBorderIcon />
-                  </IconButton>
-                  <IconButton
-                    sx={{
-                      color: "black",
-                      p: 2,
-                      "&:hover": {
-                        color: "blue",
-                      },
-                    }}
-                  >
-                    <ModeCommentOutlinedIcon />
-                  </IconButton>
-                  <IconButton
-                    sx={{
-                      color: "black",
-                      p: 2,
-                      "&:hover": {
-                        color: "black",
-                      },
-                    }}
-                  >
-                    <ShareIcon />
-                  </IconButton>
-
-                  <Typography variant="h6" gutterBottom>
-                    {selectedImage?.title}
-                  </Typography>
-                  <Typography>{selectedImage?.description}</Typography>
-                </Box>
-              </DialogContent>
-            </Dialog>
-          </Item>
+              </Tooltip>
+              <Tooltip title="Phone" arrow>
+                <IconButton
+                  aria-label="Phone"
+                  size="large"
+                  sx={{
+                    mb: 1,
+                  }}
+                >
+                  <PhoneEnabledIcon sx={{ fontSize: 25, color: "#162950" }} />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="Mail" arrow>
+                <IconButton
+                  aria-label="Email"
+                  size="large"
+                  sx={{
+                    mb: 1,
+                  }}
+                >
+                  <MailOutlineIcon sx={{ fontSize: 25, color: "#34A853" }} />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="WhatsApp" arrow>
+                <IconButton
+                  aria-label="whatsapp"
+                  size="large"
+                  sx={{
+                    mb: 1,
+                  }}
+                >
+                  <WhatsAppIcon sx={{ fontSize: 25, color: "#075E54" }} />
+                </IconButton>
+              </Tooltip>
+            </Box>
+          </Grid>
         </Grid>
-      </Grid>
-      <Link href="/photo-upload" passHref>
-        <FixedFab color="primary" aria-label="upload">
-          <AddPhotoAlternateIcon />
-        </FixedFab>
-      </Link>
-    </Box>
+
+        <Box sx={{ pl: 5, pr: 5 }}>
+          <Typography variant="subtitle1" gutterBottom>
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text
+            ever since the 1500s, when an unknown printer took a galley of type
+            and scrambled it to make a type specimen book.
+          </Typography>
+        </Box>
+
+        <Grid container spacing={1} sx={{ mt: 5, ml: 2 }}>
+          <Grid
+            item
+            md={2}
+            sx={{ display: { xs: "none", sm: "none", md: "block" } }}
+          >
+            <Item>
+              {" "}
+              <Typography variant="h6" gutterBottom sx={{ color: "black" }}>
+                Followings
+                <Divider />
+                <List
+                  dense
+                  sx={{
+                    width: "100%",
+                    maxWidth: 360,
+                    bgcolor: "background.paper",
+                  }}
+                >
+                  {[0, 1, 2, 3].map((value) => {
+                    const labelId = `checkbox-list-secondary-label-${value}`;
+                    return (
+                      <ListItem key={value} disablePadding>
+                        <ListItemButton>
+                          <ListItemAvatar>
+                            <Avatar
+                              alt={`Avatar n°${value + 1}`}
+                              src={`/static/images/avatar/${value + 1}.jpg`}
+                            />
+                          </ListItemAvatar>
+                          <ListItemText
+                            id={labelId}
+                            primary={`Person ${value + 1}`}
+                          />
+                        </ListItemButton>
+                      </ListItem>
+                    );
+                  })}
+                </List>
+              </Typography>
+            </Item>
+          </Grid>
+
+          <Grid item xs={11} md={9.5}>
+            <Item>
+              <ImageList
+                sx={{ width: "100%", height: "100%" }}
+                cols={cols}
+                rowHeight={164 + 20}
+                gap={8}
+              >
+                {itemData.map((item: ImageItem) => (
+                  <ImageListItem
+                    key={item.img}
+                    sx={{ position: "relative" }}
+                    onClick={() => handleClickOpen(item)}
+                    style={{ cursor: "pointer" }}
+                  >
+                    <img
+                      srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                      src={`${item.img}?w=164&h=164&fit=crop&auto=format`}
+                      alt={item.title}
+                      loading="lazy"
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                      }}
+                    />
+                    <IconButton
+                      sx={{
+                        position: "absolute",
+                        bottom: 45,
+                        left: 3,
+                        color: "white",
+                        "&:hover": {
+                          color: "red",
+                        },
+                      }}
+                    >
+                      <FavoriteIcon />
+                    </IconButton>
+                    <IconButton
+                      sx={{
+                        position: "absolute",
+                        bottom: 5,
+                        left: 3,
+                        color: "white",
+                        "&:hover": {
+                          color: "blue",
+                        },
+                      }}
+                    >
+                      <ModeCommentIcon />
+                    </IconButton>
+                  </ImageListItem>
+                ))}
+              </ImageList>
+
+              <Dialog open={open} onClose={handleClose} maxWidth="md" fullWidth>
+                <DialogTitle
+                  sx={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                  }}
+                >
+                  {selectedImage?.profileName}
+
+                  <IconButton
+                    aria-label="close"
+                    onClick={handleClose}
+                    sx={{
+                      color: "black",
+                    }}
+                  >
+                    <CloseIcon />
+                  </IconButton>
+                </DialogTitle>
+
+                <Box sx={{ display: "flex", ml: 3 }}>
+                  <LocationOnOutlinedIcon fontSize="small" />
+                  <Typography variant="subtitle2" gutterBottom>
+                    {selectedImage?.location}
+                  </Typography>
+                </Box>
+
+                <DialogContent>
+                  <img
+                    src={`${selectedImage?.img}?w=800&h=600&fit=crop&auto=format`}
+                    alt={selectedImage?.title}
+                    style={{ width: "100%", height: "auto" }}
+                  />
+                  <Box sx={{ p: 2 }}>
+                    <IconButton
+                      sx={{
+                        color: "Black",
+                        p: 2,
+                        "&:hover": {
+                          color: "red",
+                        },
+                      }}
+                    >
+                      <FavoriteBorderIcon />
+                    </IconButton>
+                    <IconButton
+                      sx={{
+                        color: "black",
+                        p: 2,
+                        "&:hover": {
+                          color: "blue",
+                        },
+                      }}
+                    >
+                      <ModeCommentOutlinedIcon />
+                    </IconButton>
+                    <IconButton
+                      sx={{
+                        color: "black",
+                        p: 2,
+                        "&:hover": {
+                          color: "black",
+                        },
+                      }}
+                    >
+                      <ShareIcon />
+                    </IconButton>
+
+                    <Typography variant="h6" gutterBottom>
+                      {selectedImage?.title}
+                    </Typography>
+                    <Typography>{selectedImage?.description}</Typography>
+                  </Box>
+                </DialogContent>
+              </Dialog>
+            </Item>
+          </Grid>
+        </Grid>
+        <Link href="/photo-upload" passHref>
+          <FixedFab color="primary" aria-label="upload">
+            <AddPhotoAlternateIcon />
+          </FixedFab>
+        </Link>
+      </Box>
+    </Layout>
   );
 };
 
