@@ -20,7 +20,6 @@ import {
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
-import FavoriteIcon from "@mui/icons-material/Favorite";
 import FaceRetouchingNaturalIcon from "@mui/icons-material/FaceRetouchingNatural";
 import ColorLensIcon from "@mui/icons-material/ColorLens";
 import InterestsIcon from "@mui/icons-material/Interests";
@@ -116,7 +115,11 @@ function Page() {
                     icon={<CameraAltIcon />}
                     path="/"
                   />
-                  <IconChip label="Models" icon={<FavoriteIcon />} path="/" />
+                  <IconChip
+                    label="Models"
+                    icon={<LocalFloristIcon />}
+                    path="/"
+                  />
                   <IconChip
                     label="Salons"
                     icon={<FaceRetouchingNaturalIcon />}

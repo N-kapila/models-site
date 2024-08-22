@@ -5,7 +5,6 @@ import { Container, Box, Typography, IconButton, Link } from "@mui/material";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
-//import Link from "next/link";
 
 const page: React.FC = () => {
   return (

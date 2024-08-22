@@ -28,14 +28,6 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ModeCommentOutlinedIcon from "@mui/icons-material/ModeCommentOutlined";
 import { keyframes } from "@mui/material/styles";
 
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: "center",
-  color: theme.palette.text.secondary,
-}));
-
 const images = [
   "https://www.photowant.com/wp-content/uploads/2022/10/Modeling-in-Kerala-Photowant-110.jpg",
   "https://www.ukmodels.co.uk/wp-content/uploads/2020/08/shutterstock_397813951-scaled.jpg",
@@ -68,7 +60,7 @@ const ImageContainer = styled(Box)(({ theme }: { theme: Theme }) => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  backgroundColor: "#000", // Set background color
+  backgroundColor: "#000",
 }));
 
 const StyledImage = styled("img")(({ theme }: { theme: Theme }) => ({
@@ -196,7 +188,7 @@ const Page: React.FC = () => {
             </>
           }
           title="Shrimp and Chorizo Paella"
-          subheader="September 14, 2016"
+          subheader="September 14, 2024"
         />
 
         <CardContent>

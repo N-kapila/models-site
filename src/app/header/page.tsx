@@ -20,7 +20,6 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
-  Button,
   Link,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -29,9 +28,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import MailIcon from "@mui/icons-material/Mail";
 import userimg from "../../../public/assets/user.png";
-import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import { useClickAway } from "react-use";
-//import Link from "next/link";
 
 interface StyledInputBaseProps extends InputBaseProps {
   expanded: boolean;
@@ -158,12 +155,6 @@ const page: React.FC = () => {
           <ListItemText primary="Notifications" />
         </ListItem>
       </List>
-      <Box sx={{ padding: 5 }}>
-        <Button variant="contained" href="/profile" rel="noopener noreferrer">
-          <PersonOutlineIcon sx={{ mr: 1 }} />
-          Profile
-        </Button>
-      </Box>
     </Box>
   );
 
