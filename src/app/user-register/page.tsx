@@ -9,19 +9,15 @@ import {
   Button,
   Divider,
   Typography,
-  TextField,
   Link,
   MenuItem,
   FormControl,
   Select,
   SelectChangeEvent,
-  InputAdornment,
-  IconButton,
   InputLabel,
 } from "@mui/material";
 import Image from "next/image";
 import FacebookRoundedIcon from "@mui/icons-material/FacebookRounded";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
 import registerimg from "../../../public/assets/registerimg2.jpg";
 import googleIcon from "../../../public/assets/LogoGoogle.png";
 import LabeledTextField from "../components/TextField";
@@ -48,29 +44,8 @@ const DottedDivider = styled(Divider)(({ theme }) => ({
   },
 }));
 
-const textFieldStyle = {
-  "& .MuiInputBase-root": {
-    height: "40px",
-    display: "flex",
-    alignItems: "center",
-  },
-  "& .MuiInputLabel-root": {
-    top: "-6px",
-  },
-};
-
 const page: React.FC = () => {
   const [role, setRole] = React.useState("");
-  const [showPassword, setShowPassword] = React.useState(false);
-  const [showRePassword, setShowRePassword] = React.useState(false);
-
-  const handleClickShowPassword = () => {
-    setShowPassword(!showPassword);
-  };
-
-  const handleClickShowRePassword = () => {
-    setShowRePassword(!showRePassword);
-  };
 
   const handleChange = (event: SelectChangeEvent<string>) => {
     setRole(event.target.value);
@@ -104,16 +79,52 @@ const page: React.FC = () => {
                 width: "100%",
                 display: "flex",
                 flexDirection: "row",
-                justifyContent: "flex-end",
+                justifyContent: "space-between",
                 mb: 5,
               }}
             >
-              <Typography variant="subtitle1" gutterBottom sx={{ mr: 1 }}>
-                Already have an account?
-              </Typography>
-              <Link href="/user-login" variant="subtitle1" underline="none">
-                Login
-              </Link>
+              <Box
+                sx={{
+                  display: "flex",
+                  ml: { xs: 1, sm: 2, md: 3 },
+                }}
+              >
+                <Link
+                  href="/"
+                  sx={{
+                    "&:hover": {
+                      transform: "scale(1.2)",
+                    },
+                  }}
+                >
+                  <img
+                    src="/assets/logo7.png"
+                    alt="Logo"
+                    style={{
+                      height: "40px",
+                      width: "auto",
+                      cursor: "pointer",
+                    }}
+                  />
+                </Link>
+              </Box>
+              <Box sx={{ display: "flex" }}>
+                <Typography variant="subtitle1" gutterBottom sx={{ mr: 1 }}>
+                  Already have an account?
+                </Typography>
+                <Link
+                  href="/user-login"
+                  variant="subtitle1"
+                  underline="none"
+                  sx={{
+                    "&:hover": {
+                      textDecoration: "underline",
+                    },
+                  }}
+                >
+                  Login
+                </Link>
+              </Box>
             </Box>
 
             <Typography variant="h4" gutterBottom sx={{ color: "#000000" }}>

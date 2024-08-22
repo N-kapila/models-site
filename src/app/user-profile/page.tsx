@@ -56,7 +56,6 @@ interface ImageItem {
 }
 
 const UserProfile = () => {
-  const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [backgroundImage, setBackgroundImage] = useState<string | null>(null);
   const [profileImage, setProfileImage] = useState<string | null>(null);
   const [open, setOpen] = React.useState(false);
@@ -183,6 +182,7 @@ const UserProfile = () => {
           onChange={handleCoverFileChange}
         />
 
+        {/* Profile Photo */}
         <Box
           sx={{
             position: "absolute",
@@ -196,8 +196,8 @@ const UserProfile = () => {
             alt="User Profile"
             src={profileImage || undefined}
             sx={{
-              width: 160,
-              height: 160,
+              width: 170,
+              height: 170,
               position: "absolute",
               bottom: 0,
               left: 0,
