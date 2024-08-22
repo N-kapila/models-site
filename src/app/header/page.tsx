@@ -21,12 +21,14 @@ import {
   ListItemIcon,
   ListItemText,
   Link,
+  Button,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import HomeIcon from "@mui/icons-material/Home";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import MailIcon from "@mui/icons-material/Mail";
+import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import userimg from "../../../public/assets/user.png";
 import { useClickAway } from "react-use";
 
@@ -65,6 +67,26 @@ const StyledInputBase = styled(InputBase)<StyledInputBaseProps>(
     },
   })
 );
+
+const RoundedButton = styled(Button)(({ theme }) => ({
+  borderRadius: "10%",
+  minWidth: "0",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  textTransform: "none",
+  color: "black",
+  marginLeft: 20,
+  padding: 5,
+  backgroundColor: "white",
+  transition: "all 0.3s ease",
+  "&:hover": {
+    backgroundColor: "#e0e0e0",
+    borderColor: "#ccc",
+    boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)",
+    transform: "scale(1.05)",
+  },
+}));
 
 const page: React.FC = () => {
   const [expanded, setExpanded] = React.useState(false);
@@ -278,6 +300,10 @@ const page: React.FC = () => {
         </Box>
 
         <Box sx={{ flexGrow: 0 }}>
+          <RoundedButton size="small" href="/photo-upload">
+            <AddPhotoAlternateIcon />
+            Upload
+          </RoundedButton>
           <Menu
             sx={{ mt: "45px" }}
             id="menu-appbar"
@@ -299,6 +325,7 @@ const page: React.FC = () => {
                 <Link
                   href={setting.path}
                   sx={{
+                    color: "inherit",
                     textDecoration: "none",
                   }}
                 >

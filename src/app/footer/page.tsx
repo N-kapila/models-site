@@ -112,6 +112,7 @@ const page: React.FC = () => {
               href="https://www.facebook.com"
               target="_blank"
               sx={{
+                color: "inherit",
                 "&:hover": {
                   transform: "scale(1.2)",
                 },
@@ -123,6 +124,7 @@ const page: React.FC = () => {
               href="https://www.twitter.com"
               target="_blank"
               sx={{
+                color: "inherit",
                 "&:hover": {
                   transform: "scale(1.2)",
                 },
@@ -134,6 +136,7 @@ const page: React.FC = () => {
               href="https://www.linkedin.com"
               target="_blank"
               sx={{
+                color: "inherit",
                 "&:hover": {
                   transform: "scale(1.2)",
                 },
@@ -219,6 +222,7 @@ const page: React.FC = () => {
               href="https://www.facebook.com"
               target="_blank"
               sx={{
+                color: "inherit",
                 "&:hover": {
                   transform: "scale(1.2)",
                 },
@@ -230,6 +234,7 @@ const page: React.FC = () => {
               href="https://www.twitter.com"
               target="_blank"
               sx={{
+                color: "inherit",
                 "&:hover": {
                   transform: "scale(1.2)",
                 },
@@ -241,6 +246,7 @@ const page: React.FC = () => {
               href="https://www.linkedin.com"
               target="_blank"
               sx={{
+                color: "inherit",
                 "&:hover": {
                   transform: "scale(1.2)",
                 },

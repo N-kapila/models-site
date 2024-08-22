@@ -135,7 +135,7 @@ export default function page() {
                   textAlign: "center",
                 }}
               >
-                <Button variant="contained" sx={{ margin: 3 }}>
+                <Button variant="contained" sx={{ margin: 3 }} href="/">
                   Login
                 </Button>
               </Box>

@@ -204,7 +204,7 @@ const page: React.FC = () => {
                 />
               </Box>
 
-              <Button variant="contained" sx={{ margin: 3 }}>
+              <Button variant="contained" sx={{ margin: 3 }} href="/user-login">
                 Register
               </Button>
             </Box>
