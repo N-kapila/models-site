@@ -1,11 +1,11 @@
 "use client";
 
 import React from "react";
-import { Container, Box, Typography, IconButton } from "@mui/material";
+import { Container, Box, Typography, IconButton, Link } from "@mui/material";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import Link from "next/link";
+//import Link from "next/link";
 
 const page: React.FC = () => {
   return (
@@ -33,7 +33,14 @@ const page: React.FC = () => {
               display: { xs: "none", sm: "flex" },
             }}
           >
-            <Link href="/" passHref>
+            <Link
+              href="/"
+              sx={{
+                "&:hover": {
+                  transform: "scale(1.2)",
+                },
+              }}
+            >
               <img
                 src="/assets/logo5.png"
                 alt="Logo"
@@ -47,16 +54,52 @@ const page: React.FC = () => {
           </Box>
 
           <Box sx={{ display: { xs: "none", sm: "flex" }, gap: 2 }}>
-            <Link href="/" color="inherit">
+            <Link
+              href="/"
+              color="inherit"
+              sx={{
+                textDecoration: "none",
+                "&:hover": {
+                  textDecoration: "underline",
+                },
+              }}
+            >
               Home
             </Link>
-            <Link href="/#" color="inherit">
+            <Link
+              href="/#"
+              color="inherit"
+              sx={{
+                textDecoration: "none",
+                "&:hover": {
+                  textDecoration: "underline",
+                },
+              }}
+            >
               Terms & Conditions
             </Link>
-            <Link href="/#" color="inherit">
+            <Link
+              href="/#"
+              color="inherit"
+              sx={{
+                textDecoration: "none",
+                "&:hover": {
+                  textDecoration: "underline",
+                },
+              }}
+            >
               Terms of Service
             </Link>
-            <Link href="/#" color="inherit">
+            <Link
+              href="/#"
+              color="inherit"
+              sx={{
+                textDecoration: "none",
+                "&:hover": {
+                  textDecoration: "underline",
+                },
+              }}
+            >
               Privacy Policy
             </Link>
           </Box>
@@ -69,21 +112,33 @@ const page: React.FC = () => {
             <IconButton
               href="https://www.facebook.com"
               target="_blank"
-              color="inherit"
+              sx={{
+                "&:hover": {
+                  transform: "scale(1.2)",
+                },
+              }}
             >
               <FacebookIcon />
             </IconButton>
             <IconButton
               href="https://www.twitter.com"
               target="_blank"
-              color="inherit"
+              sx={{
+                "&:hover": {
+                  transform: "scale(1.2)",
+                },
+              }}
             >
               <TwitterIcon />
             </IconButton>
             <IconButton
               href="https://www.linkedin.com"
               target="_blank"
-              color="inherit"
+              sx={{
+                "&:hover": {
+                  transform: "scale(1.2)",
+                },
+              }}
             >
               <LinkedInIcon />
             </IconButton>
@@ -96,7 +151,7 @@ const page: React.FC = () => {
               display: { xs: "flex", sm: "none" },
             }}
           >
-            <Link href="/" passHref>
+            <Link href="/">
               <img
                 src="/assets/logo6.png"
                 alt="Logo"
@@ -112,18 +167,46 @@ const page: React.FC = () => {
           <Box
             sx={{
               display: { xs: "flex", sm: "none" },
-              fontSize: "11px",
+              fontSize: "13px",
               gap: 1,
               ml: 3,
             }}
           >
-            <Link href="/" color="inherit">
+            <Link
+              href="/"
+              color="inherit"
+              sx={{
+                textDecoration: "none",
+                "&:hover": {
+                  textDecoration: "underline",
+                },
+              }}
+            >
               Home
             </Link>
-            <Link href="/#" color="inherit">
+            <Link
+              href="/#"
+              color="inherit"
+              sx={{
+                textDecoration: "none",
+                "&:hover": {
+                  textDecoration: "underline",
+                },
+              }}
+            >
               Terms & Conditions
             </Link>
-            <Link href="/#" color="inherit">
+
+            <Link
+              href="/#"
+              color="inherit"
+              sx={{
+                textDecoration: "none",
+                "&:hover": {
+                  textDecoration: "underline",
+                },
+              }}
+            >
               Privacy Policy
             </Link>
           </Box>
@@ -136,21 +219,33 @@ const page: React.FC = () => {
             <IconButton
               href="https://www.facebook.com"
               target="_blank"
-              color="inherit"
+              sx={{
+                "&:hover": {
+                  transform: "scale(1.2)",
+                },
+              }}
             >
               <FacebookIcon fontSize="small" />
             </IconButton>
             <IconButton
               href="https://www.twitter.com"
               target="_blank"
-              color="inherit"
+              sx={{
+                "&:hover": {
+                  transform: "scale(1.2)",
+                },
+              }}
             >
               <TwitterIcon fontSize="small" />
             </IconButton>
             <IconButton
               href="https://www.linkedin.com"
               target="_blank"
-              color="inherit"
+              sx={{
+                "&:hover": {
+                  transform: "scale(1.2)",
+                },
+              }}
             >
               <LinkedInIcon fontSize="small" />
             </IconButton>

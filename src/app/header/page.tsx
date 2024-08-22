@@ -21,6 +21,7 @@ import {
   ListItemIcon,
   ListItemText,
   Button,
+  Link,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
@@ -30,7 +31,7 @@ import MailIcon from "@mui/icons-material/Mail";
 import userimg from "../../../public/assets/user.png";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import { useClickAway } from "react-use";
-import Link from "next/link";
+//import Link from "next/link";
 
 interface StyledInputBaseProps extends InputBaseProps {
   expanded: boolean;
@@ -197,7 +198,14 @@ const page: React.FC = () => {
               display: { xs: "none", md: "flex" },
             }}
           >
-            <Link href="/" passHref>
+            <Link
+              href="/"
+              sx={{
+                "&:hover": {
+                  transform: "scale(1.1)",
+                },
+              }}
+            >
               <img
                 src="/assets/logo5.png"
                 alt="Logo"
@@ -216,7 +224,7 @@ const page: React.FC = () => {
               display: { xs: "flex", md: "none" },
             }}
           >
-            <Link href="/" passHref>
+            <Link href="/">
               <img
                 src="/assets/logo5.png"
                 alt="Logo"
@@ -297,18 +305,13 @@ const page: React.FC = () => {
           >
             {settings.map((setting) => (
               <MenuItem key={setting.label} onClick={handleCloseUserMenu}>
-                <Link href={setting.path} passHref>
-                  <Typography
-                    textAlign="center"
-                    component="a"
-                    sx={{
-                      textDecoration: "none", // Ensure underline is removed
-                      color: "black",
-                      "&:hover": {
-                        color: "inherit",
-                      },
-                    }}
-                  >
+                <Link
+                  href={setting.path}
+                  sx={{
+                    textDecoration: "none",
+                  }}
+                >
+                  <Typography textAlign="center" component="a">
                     {setting.label}
                   </Typography>
                 </Link>
