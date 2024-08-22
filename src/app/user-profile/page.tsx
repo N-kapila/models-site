@@ -21,6 +21,7 @@ import {
   Dialog,
   DialogContent,
   DialogTitle,
+  Fab,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import ShareIcon from "@mui/icons-material/Share";
@@ -36,6 +37,7 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ModeCommentOutlinedIcon from "@mui/icons-material/ModeCommentOutlined";
 import CloseIcon from "@mui/icons-material/Close";
 import PersonAddAltOutlinedIcon from "@mui/icons-material/PersonAddAltOutlined";
+import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import Link from "next/link";
 import { useMediaQuery, useTheme } from "@mui/material";
 
@@ -54,6 +56,13 @@ interface ImageItem {
   description: string;
   location: string;
 }
+
+const FixedFab = styled(Fab)(({ theme }) => ({
+  position: "fixed",
+  bottom: theme.spacing(8),
+  right: theme.spacing(8),
+  zIndex: 1000,
+}));
 
 const UserProfile = () => {
   const [backgroundImage, setBackgroundImage] = useState<string | null>(null);
@@ -117,6 +126,11 @@ const UserProfile = () => {
   const handleClose = () => {
     setOpen(false);
     setSelectedImage(null);
+  };
+
+  const handleUploadClick = () => {
+    // Handle the upload action here
+    console.log("Upload photo");
   };
 
   return (
@@ -502,6 +516,11 @@ const UserProfile = () => {
           </Item>
         </Grid>
       </Grid>
+      <Link href="/photo-upload" passHref>
+        <FixedFab color="primary" aria-label="upload">
+          <AddPhotoAlternateIcon />
+        </FixedFab>
+      </Link>
     </Box>
   );
 };
