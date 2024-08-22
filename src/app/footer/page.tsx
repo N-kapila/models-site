@@ -16,6 +16,8 @@ const page: React.FC = () => {
         mt: 3,
         backgroundColor: "#000000",
         color: "#ffffff",
+        width: "100%",
+        bottom: 0,
       }}
     >
       <Container maxWidth="lg">
@@ -169,7 +171,7 @@ const page: React.FC = () => {
           <Box
             sx={{
               display: { xs: "flex", sm: "none" },
-              fontSize: "13px",
+              fontSize: "15px",
               gap: 1,
               ml: 3,
             }}
@@ -196,7 +198,7 @@ const page: React.FC = () => {
                 },
               }}
             >
-              Terms & Conditions
+              Terms
             </Link>
 
             <Link
@@ -209,7 +211,7 @@ const page: React.FC = () => {
                 },
               }}
             >
-              Privacy Policy
+              Policy
             </Link>
           </Box>
 
