@@ -24,6 +24,7 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
+import TuneIcon from "@mui/icons-material/Tune";
 import HomeIcon from "@mui/icons-material/Home";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import MailIcon from "@mui/icons-material/Mail";
@@ -260,6 +261,7 @@ const page: React.FC = () => {
           <Search ref={searchRef}>
             <IconButton onClick={handleExpandClick}>
               <SearchIcon sx={{ fontSize: 15 }} />
+              {/* <TuneIcon sx={{ fontSize: 15 }} /> */}
             </IconButton>
 
             <StyledInputBase
