@@ -169,7 +169,7 @@ const page: React.FC = () => {
 
         <ListItem button component="a" href="/notifications">
           <ListItemIcon>
-            <Badge badgeContent={4} color="primary">
+            <Badge badgeContent={3} color="primary">
               <NotificationsNoneIcon />
             </Badge>
           </ListItemIcon>
@@ -280,8 +280,8 @@ const page: React.FC = () => {
             </Badge>
           </IconButton>
 
-          <IconButton href="/notification" sx={{ color: "white" }}>
-            <Badge badgeContent={4} color="primary">
+          <IconButton href="/notifications" sx={{ color: "white" }}>
+            <Badge badgeContent={3} color="primary">
               <NotificationsNoneIcon sx={{ display: { xs: "flex" } }} />
             </Badge>
           </IconButton>
