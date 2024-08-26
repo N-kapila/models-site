@@ -157,10 +157,10 @@ const page: React.FC = () => {
           >
             <Link href="/">
               <img
-                src="/assets/logo6.png"
+                src="/assets/logo5.png"
                 alt="Logo"
                 style={{
-                  height: "50px",
+                  height: "40px",
                   width: "auto",
                   cursor: "pointer",
                 }}

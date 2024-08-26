@@ -261,7 +261,6 @@ const page: React.FC = () => {
           <Search ref={searchRef}>
             <IconButton onClick={handleExpandClick}>
               <SearchIcon sx={{ fontSize: 15 }} />
-              {/* <TuneIcon sx={{ fontSize: 15 }} /> */}
             </IconButton>
 
             <StyledInputBase
@@ -270,6 +269,12 @@ const page: React.FC = () => {
               autoFocus={expanded}
               expanded={expanded}
             />
+
+            {expanded && (
+              <IconButton href="search-page" sx={{ marginLeft: "auto" }}>
+                <TuneIcon sx={{ fontSize: 15 }} />
+              </IconButton>
+            )}
           </Search>
 
           <IconButton href="/" sx={{ color: "white" }}>
