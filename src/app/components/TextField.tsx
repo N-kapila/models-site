@@ -4,9 +4,16 @@ import { Box, Typography, TextField, TextFieldProps } from "@mui/material";
 interface LabeledTextFieldProps {
   label: string;
   textFieldProps?: TextFieldProps;
+  error?: boolean;
+  helperText?: string;
 }
 
-const Page: React.FC<LabeledTextFieldProps> = ({ label, textFieldProps }) => {
+const Page: React.FC<LabeledTextFieldProps> = ({
+  label,
+  textFieldProps,
+  error,
+  helperText,
+}) => {
   return (
     <Box>
       <Typography variant="subtitle2" gutterBottom>
@@ -15,8 +22,8 @@ const Page: React.FC<LabeledTextFieldProps> = ({ label, textFieldProps }) => {
       <TextField
         fullWidth
         size="small"
-        multiline={textFieldProps?.multiline}
-        rows={textFieldProps?.rows}
+        error={error}
+        helperText={helperText}
         {...textFieldProps}
       />
     </Box>

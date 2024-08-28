@@ -15,6 +15,10 @@ interface PasswordFieldProps {
   fullWidth?: boolean;
   id?: string;
   sx?: object;
+  error?: boolean;
+  helperText?: string;
+  value: string;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const PasswordField: React.FC<PasswordFieldProps> = ({
@@ -23,6 +27,10 @@ const PasswordField: React.FC<PasswordFieldProps> = ({
   fullWidth = true,
   id = "password",
   sx = {},
+  error = false,
+  helperText = "",
+  value,
+  onChange,
 }) => {
   const [showPassword, setShowPassword] = useState(false);
 
@@ -42,6 +50,10 @@ const PasswordField: React.FC<PasswordFieldProps> = ({
         type={showPassword ? "text" : "password"}
         sx={sx}
         size="small"
+        error={error}
+        helperText={helperText}
+        value={value}
+        onChange={onChange}
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">

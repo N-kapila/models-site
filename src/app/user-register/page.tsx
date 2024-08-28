@@ -1,6 +1,6 @@
 "use client";
 
-import * as React from "react";
+import React, { useState } from "react";
 import { styled } from "@mui/material/styles";
 import {
   Box,
@@ -15,6 +15,8 @@ import {
   Select,
   SelectChangeEvent,
   InputLabel,
+  FormHelperText,
+  Alert,
 } from "@mui/material";
 import Image from "next/image";
 import FacebookRoundedIcon from "@mui/icons-material/FacebookRounded";
@@ -22,6 +24,7 @@ import registerimg from "../../../public/assets/registerimg2.jpg";
 import googleIcon from "../../../public/assets/LogoGoogle.png";
 import LabeledTextField from "../components/TextField";
 import PasswordField from "../components/PasswordField";
+import { useRouter } from "next/navigation";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -45,10 +48,144 @@ const DottedDivider = styled(Divider)(({ theme }) => ({
 }));
 
 const page: React.FC = () => {
-  const [role, setRole] = React.useState("");
+  const [role, setRole] = useState<string>("");
+  const [name, setName] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [phone, setPhone] = useState<string>("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const [nameError, setNameError] = useState<boolean>(false);
+  const [emailError, setEmailError] = useState<boolean>(false);
+  const [phoneError, setPhoneError] = useState<boolean>(false);
+  const [roleError, setRoleError] = useState<boolean>(false);
+  const [passwordError, setPasswordError] = useState(false);
+  const [confirmPasswordError, setConfirmPasswordError] = useState(false);
+
+  const [confirmPasswordHelperText, setConfirmPasswordHelperText] =
+    useState("");
+  const [passwordHelperText, setPasswordHelperText] = useState("");
+  const [alertVisible, setAlertVisible] = useState(false);
+  const [alertMessage, setAlertMessage] = useState<string | null>(null);
 
   const handleChange = (event: SelectChangeEvent<string>) => {
-    setRole(event.target.value);
+    setRole(event.target.value as string);
+    if (event.target.value) {
+      setRoleError(false);
+    }
+  };
+
+  const handleChangePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+
+    // Update the password state
+    setPassword(value);
+
+    // Validate password length
+    if (value.length < 6) {
+      setPasswordError(true);
+      setPasswordHelperText("Password must be at least 6 characters long.");
+    } else {
+      setPasswordError(false);
+      setPasswordHelperText("");
+    }
+  };
+
+  const handleChangeConfirmPassword = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setConfirmPassword(event.target.value);
+    if (event.target.value !== password) {
+      setConfirmPasswordError(true);
+      setConfirmPasswordHelperText("Passwords do not match.");
+    } else {
+      setConfirmPasswordError(false);
+      setConfirmPasswordHelperText("");
+    }
+  };
+
+  const router = useRouter();
+
+  const handleRegister = () => {
+    let valid = true;
+
+    if (!name.trim()) {
+      setNameError(true);
+      valid = false;
+    } else {
+      setNameError(false);
+    }
+
+    if (!email.trim()) {
+      setEmailError(true);
+      valid = false;
+    } else {
+      setEmailError(false);
+    }
+
+    if (!phone.trim()) {
+      setPhoneError(true);
+      valid = false;
+    } else {
+      setPhoneError(false);
+    }
+
+    if (!role) {
+      setRoleError(true);
+      valid = false;
+    } else {
+      setRoleError(false);
+    }
+
+    if (password.length < 6) {
+      setPasswordError(true);
+      setPasswordHelperText("Password must be at least 6 characters long.");
+      valid = false;
+    } else {
+      setPasswordError(false);
+      setPasswordHelperText("");
+    }
+
+    if (confirmPassword !== password) {
+      setConfirmPasswordError(true);
+      setConfirmPasswordHelperText("Passwords do not match.");
+      valid = false;
+    } else {
+      setConfirmPasswordError(false);
+      setConfirmPasswordHelperText("");
+    }
+
+    if (valid) {
+      setAlertMessage("User registration successful.");
+      setAlertVisible(true);
+
+      // Delay navigation to allow the alert to be visible
+      setTimeout(() => {
+        router.push("/user-login");
+      }, 2000); // Adjust the timeout duration as needed
+    }
+  };
+
+  // Handlers to clear errors when the user starts typing
+  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setName(e.target.value);
+    if (e.target.value.trim()) {
+      setNameError(false);
+    }
+  };
+
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+    if (e.target.value.trim()) {
+      setEmailError(false);
+    }
+  };
+
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPhone(e.target.value);
+    if (e.target.value.trim()) {
+      setPhoneError(false);
+    }
   };
 
   return (
@@ -144,7 +281,11 @@ const page: React.FC = () => {
                   label="Name"
                   textFieldProps={{
                     placeholder: "Enter Your Name",
+                    value: name,
+                    onChange: handleNameChange,
                   }}
+                  error={nameError}
+                  helperText={nameError ? "Name is required" : ""}
                 />
               </Box>
 
@@ -153,7 +294,12 @@ const page: React.FC = () => {
                   label="Email"
                   textFieldProps={{
                     placeholder: "Enter Your Email",
+                    value: email,
+                    onChange: handleEmailChange,
+                    type: "email",
                   }}
+                  error={emailError}
+                  helperText={emailError ? "Email is required" : ""}
                 />
               </Box>
 
@@ -162,7 +308,12 @@ const page: React.FC = () => {
                   label="Phone Number"
                   textFieldProps={{
                     placeholder: "Enter Your Phone Number",
+                    value: phone,
+                    onChange: handlePhoneChange,
+                    type: "tel",
                   }}
+                  error={phoneError}
+                  helperText={phoneError ? "Phone number is required" : ""}
                 />
               </Box>
 
@@ -174,7 +325,12 @@ const page: React.FC = () => {
                 >
                   Role
                 </Typography>
-                <FormControl fullWidth size="small" sx={{ textAlign: "left" }}>
+                <FormControl
+                  fullWidth
+                  size="small"
+                  sx={{ textAlign: "left" }}
+                  error={roleError}
+                >
                   <InputLabel id="role-select-label">
                     Select your role
                   </InputLabel>
@@ -189,11 +345,20 @@ const page: React.FC = () => {
                     <MenuItem value="model">Model</MenuItem>
                     <MenuItem value="designer">Designer</MenuItem>
                   </Select>
+                  {roleError && (
+                    <FormHelperText>Role is required</FormHelperText>
+                  )}
                 </FormControl>
               </Box>
 
               <Box>
-                <PasswordField label="Password" />
+                <PasswordField
+                  label="Password"
+                  value={password}
+                  onChange={handleChangePassword}
+                  error={passwordError}
+                  helperText={passwordHelperText}
+                />
               </Box>
 
               <Box>
@@ -201,10 +366,23 @@ const page: React.FC = () => {
                   label="Confirm Password"
                   id="confirm-password"
                   placeholder="Confirm Password"
+                  value={confirmPassword}
+                  onChange={handleChangeConfirmPassword}
+                  error={confirmPasswordError}
+                  helperText={confirmPasswordHelperText}
                 />
               </Box>
 
-              <Button variant="contained" sx={{ margin: 3 }} href="/user-login">
+              {alertVisible && alertMessage && (
+                <Alert variant="filled" severity="success" sx={{ m: 1 }}>
+                  {alertMessage}
+                </Alert>
+              )}
+              <Button
+                variant="contained"
+                sx={{ margin: 2 }}
+                onClick={handleRegister}
+              >
                 Register
               </Button>
             </Box>
