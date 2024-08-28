@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { styled } from "@mui/material/styles";
 import {
   Box,
@@ -10,6 +10,7 @@ import {
   Divider,
   Typography,
   Link,
+  Alert,
 } from "@mui/material";
 import Image from "next/image";
 import FacebookRoundedIcon from "@mui/icons-material/FacebookRounded";
@@ -17,6 +18,7 @@ import loginImg from "../../../public/assets/loginImg.jpg";
 import googleIcon from "../../../public/assets/LogoGoogle.png";
 import LabeledTextField from "../components/TextField";
 import PasswordField from "../components/PasswordField";
+import { useRouter } from "next/navigation";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -41,11 +43,67 @@ const DottedDivider = styled(Divider)(({ theme }) => ({
 }));
 
 export default function page() {
-  // const [showPassword, setShowPassword] = React.useState(false);
+  const [password, setPassword] = useState("");
+  const [userName, setUserName] = useState<string>("");
 
-  // const handleClickShowPassword = () => {
-  //   setShowPassword(!showPassword);
-  // };
+  const [passwordError, setPasswordError] = useState(false);
+  const [userNameError, setUserNameError] = useState<boolean>(false);
+
+  const [passwordHelperText, setPasswordHelperText] = useState("");
+  const [alertVisible, setAlertVisible] = useState(false);
+  const [alertMessage, setAlertMessage] = useState<string | null>(null);
+
+  const handleChangePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+
+    // Update the password state
+    setPassword(value);
+
+    // Validate password length
+    if (value.length < 1) {
+      setPasswordError(true);
+      setPasswordHelperText("Password field can not empty.");
+    } else {
+      setPasswordError(false);
+      setPasswordHelperText("");
+    }
+  };
+
+  const router = useRouter();
+
+  const handleLogin = () => {
+    let valid = true;
+
+    if (!userName.trim()) {
+      setUserNameError(true);
+      valid = false;
+    } else {
+      setUserNameError(false);
+    }
+
+    if (password.length < 1) {
+      setPasswordError(true);
+      setPasswordHelperText("Password field can not empty.");
+      return;
+    }
+
+    // If validation passes
+    setAlertMessage("User Login successful.");
+    setAlertVisible(true);
+
+    // Delay navigation to allow the alert to be visible
+    setTimeout(() => {
+      router.push("/");
+    }, 2000); // Adjust the timeout duration as needed
+  };
+
+  const handleUserNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUserName(e.target.value);
+    if (e.target.value.trim()) {
+      setUserNameError(false);
+    }
+  };
+
   return (
     <Box sx={{ flexGrow: 1, padding: 1 }}>
       <Grid container spacing={2}>
@@ -111,15 +169,27 @@ export default function page() {
             <Box sx={{ width: "90%" }}>
               <Box sx={{ mb: 2 }}>
                 <LabeledTextField
-                  label="Email or Phone number"
+                  label="Email or phone Number"
                   textFieldProps={{
-                    placeholder: "Enter Email or Phone number",
+                    placeholder: "Email or phone Number",
+                    value: userName,
+                    onChange: handleUserNameChange,
                   }}
+                  error={userNameError}
+                  helperText={
+                    userNameError ? "Email or phone Number is required" : ""
+                  }
                 />
               </Box>
 
               <Box>
-                <PasswordField label="Password" />
+                <PasswordField
+                  label="Password"
+                  value={password}
+                  onChange={handleChangePassword}
+                  error={passwordError}
+                  helperText={passwordHelperText}
+                />
               </Box>
               <Box sx={{ width: "100%", textAlign: "end", p: 1 }}>
                 <Link href="#" variant="subtitle1">
@@ -135,7 +205,16 @@ export default function page() {
                   textAlign: "center",
                 }}
               >
-                <Button variant="contained" sx={{ margin: 3 }} href="/">
+                {alertVisible && alertMessage && (
+                  <Alert variant="filled" severity="success" sx={{ m: 1 }}>
+                    {alertMessage}
+                  </Alert>
+                )}
+                <Button
+                  variant="contained"
+                  sx={{ margin: 3 }}
+                  onClick={handleLogin}
+                >
                   Login
                 </Button>
               </Box>
